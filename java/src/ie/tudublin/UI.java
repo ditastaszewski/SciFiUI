@@ -6,6 +6,7 @@ public class UI extends PApplet
 {
     Button b;
     MovingCircle mc;
+    Radar r, rn;
 
     boolean[] keys = new boolean[1024];
 
@@ -16,7 +17,7 @@ public class UI extends PApplet
     
     public void keyReleased()
     {
-        keys[keyCode] = true;
+        keys[keyCode] = false;
     }
 
     public boolean checkKey(int c)
@@ -36,6 +37,8 @@ public class UI extends PApplet
     {
         b = new Button(this, 50, 50, 100, 50, "I am a button");
         mc = new MovingCircle(this, width / 2, height / 2, 50);
+        r = new Radar(this, width / 2, height / 2, 250);
+        //rn = new Radar(this, width / 2, height / 2, 500);
     }
 
     public void draw()
@@ -45,6 +48,12 @@ public class UI extends PApplet
 
         mc.update();
         mc.render();
+
+        r.update();
+        r.render();
+
+        //rn.update();
+        //rn.render();
 
         if (checkKey(LEFT))
         {
