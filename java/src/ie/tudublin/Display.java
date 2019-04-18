@@ -11,13 +11,15 @@ public class Display
     UI ui;
 
     private float a = 0;
-    private int displacement = 50;
+    private int displacement;
+    
 
     public Display(UI ui, float x, float y)
     {
         this.ui = ui;
         this.x = x;
         this.y = y;
+        this.displacement = (int) (ui.height * 0.05);
     }
     
     public void render()
