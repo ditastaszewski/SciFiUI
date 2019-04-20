@@ -8,6 +8,7 @@ public class UI extends PApplet
     MovingCircle mc;
     Radar r, rn;
     Display d;
+    SectorMap sm;
 
     boolean[] keys = new boolean[1024];
 
@@ -36,20 +37,21 @@ public class UI extends PApplet
 
     public void setup()
     {
-        b = new Button(this, 50, 50, 100, 50, "I am a button");
-        mc = new MovingCircle(this, width / 2, height / 2, 50);
+        //b = new Button(this, 50, 50, 100, 50, "I am a button");
+        //mc = new MovingCircle(this, width / 2, height / 2, 50);
         r = new Radar(this, width / 2, height / 2, 250);
-        d = new Display(this, width/2, (int) (height * 0.90));
+        d = new Display(this, width/2, 0, width, (int) (height * 0.90));
+        sm = new SectorMap(this, width, 0, width, (int) (height * 0.90));
         //rn = new Radar(this, width / 2, height / 2, 500);
     }
 
     public void draw()
     {
         background(0);
-        b.render();
+        //b.render();
 
-        mc.update();
-        mc.render();
+        //mc.update();
+        //mc.render();
 
         r.update();
         r.render();
@@ -58,6 +60,8 @@ public class UI extends PApplet
         //rn.render();
         d.update();
         d.render();
+        sm.update();
+        sm.render();
 
         if (checkKey(LEFT))
         {
