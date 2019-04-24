@@ -17,13 +17,13 @@ public class Display
     private int displacement;
     
 
-    public Display(UI ui, float x1, float y1, float x2, float y2)
+    public Display(UI ui, float x1, float y1, float dWidth, float dHeight)
     {
         this.ui = ui;
         this.x1 = x1;
         this.y1 = y1;
-        this.x2 = x2;
-        this.y2 = y2;
+        this.x2 = dWidth;
+        this.y2 = dHeight;
         this.displacement = (int) (ui.height * 0.05);
     }
     
@@ -31,9 +31,8 @@ public class Display
     {
         ui.stroke(203,203,203);
         ui.noFill();
-        ui.line(ui.width - x1, displacement, ui.width - displacement, displacement);
-        ui.rect(ui.width - x1, displacement * 2, x1 - displacement, y1 - displacement);
-
+        ui.line(x1 + displacement, y1 + displacement, x1 + x2 - displacement, y1 + displacement);
+        ui.rect(x1 + displacement, y1 + displacement * 2, x2 - displacement * 2, y2 - displacement);
     }
 
     public void update()
