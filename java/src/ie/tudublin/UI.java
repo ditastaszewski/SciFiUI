@@ -40,8 +40,8 @@ public class UI extends PApplet
         //b = new Button(this, 50, 50, 100, 50, "I am a button");
         //mc = new MovingCircle(this, width / 2, height / 2, 50);
         r = new Radar(this, width / 2, height / 2, 250);
-        d = new Display(this, width/2, 0, width/2, (int) (height * 0.90));
-        sm = new SectorMap(this, 0, 0, width/2, (int) (height * 0.90));
+        d = new Display(this, width/2, 0, width/2, (int) (height * 0.90), "Sector XV");
+        sm = new SectorMap(this, 0, 0, width/2, (int) (height * 0.50), "Sector Map");
         //rn = new Radar(this, width / 2, height / 2, 500);
     }
 
@@ -49,6 +49,7 @@ public class UI extends PApplet
     {
         background(0);
         //b.render();
+        
 
         //mc.update();
         //mc.render();
