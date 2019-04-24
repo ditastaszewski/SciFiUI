@@ -3,16 +3,15 @@ package ie.tudublin;
 import processing.core.PApplet;
 
 public class Display {
-    private float x1;
-    private float y1;
-    private float x2;
-    private float y2;
-    private float dx = 1;
-    private String displayName;
+    protected float x1;
+    protected float y1;
+    protected float x2;
+    protected float y2;
+    protected String displayName;
 
     UI ui;
 
-    private int displacement;
+    protected int displacement;
 
     public Display(UI ui, float x1, float y1, float dWidth, float dHeight, String displayName) {
         this.ui = ui;

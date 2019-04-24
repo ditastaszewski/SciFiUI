@@ -9,6 +9,7 @@ public class UI extends PApplet
     Radar r, rn;
     Display d;
     SectorMap sm;
+    int sectorOption = 0;
 
     boolean[] keys = new boolean[1024];
 
@@ -67,6 +68,12 @@ public class UI extends PApplet
         if (checkKey(LEFT))
         {
             System.out.println("Left arrow key pressed");
+            sectorOption --;
+        }
+        if (checkKey(RIGHT))
+        {
+            System.out.println("Right arrow key pressed");
+            sectorOption ++;
         }
     }
 }
