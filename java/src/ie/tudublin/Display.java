@@ -8,6 +8,8 @@ public class Display {
     protected float x2;
     protected float y2;
     protected String displayName;
+    private float now;
+    private float delay;
 
     UI ui;
 
@@ -35,6 +37,14 @@ public class Display {
 
     public void update() {
 
+    }
+
+    public float getDelay(float last) {
+        float now = ui.millis();        
+        delay = (now - last) / 1000.0f;
+        last = now;
+
+        return delay;
     }
 
     /**

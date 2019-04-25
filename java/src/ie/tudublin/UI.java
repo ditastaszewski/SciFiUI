@@ -10,6 +10,9 @@ public class UI extends PApplet
     Display d;
     SectorMap sm;
     int sectorOption = 0;
+    float last = 0;
+    float minDelay = 0.2f;
+
 
     boolean[] keys = new boolean[1024];
 
@@ -48,6 +51,8 @@ public class UI extends PApplet
 
     public void draw()
     {
+        
+
         background(0);
         //b.render();
         
@@ -63,17 +68,74 @@ public class UI extends PApplet
         d.update();
         d.render();
         sm.update();
-        sm.render();
+        sm.render(sectorOption);
+
+        if (sectorOption > sm.getTotalSectors())
+        {
+            sectorOption = 0;
+        }
+        
+        if (sectorOption < 0)
+        {
+            sectorOption = sm.getTotalSectors() - 1;
+        }
 
         if (checkKey(LEFT))
         {
             System.out.println("Left arrow key pressed");
-            sectorOption --;
+            float delay = sm.getDelay(last);
+            System.out.println(delay);
+            
+            if (delay > minDelay)
+            {
+                last = millis();
+                sectorOption --;
+            }
+            
         }
         if (checkKey(RIGHT))
         {
             System.out.println("Right arrow key pressed");
-            sectorOption ++;
+            float delay = sm.getDelay(last);
+            System.out.println(delay);
+            
+            if (delay > minDelay)
+            {
+                last = millis();
+                sectorOption ++;
+            }
+        }
+        if (checkKey(UP))
+        {
+            System.out.println("Right arrow key pressed");
+            float delay = sm.getDelay(last);
+            System.out.println(delay);
+            
+            if (delay > minDelay)
+            {
+                last = millis();
+                sectorOption -= sm.getTotalSectorsHeight();
+                if (sectorOption < 0)
+                {
+                    sectorOption += sm.getTotalSectorsHeight() * (sm.getTotalSectors() / sm.getTotalSectorsHeight());
+                }
+            }
+        }
+        if (checkKey(DOWN))
+        {
+            System.out.println("Down arrow key pressed");
+            float delay = sm.getDelay(last);
+            System.out.println(delay);
+            
+            if (delay > minDelay)
+            {
+                last = millis();
+                sectorOption += sm.getTotalSectorsHeight();
+                if (sectorOption > sm.getTotalSectors())
+                {
+                    sectorOption -= sm.getTotalSectorsHeight() * (sm.getTotalSectors() / sm.getTotalSectorsHeight());
+                }
+            }
         }
     }
 }
