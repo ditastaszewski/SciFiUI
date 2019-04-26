@@ -15,21 +15,21 @@ public class SectorMap extends Display {
     public SectorMap(UI ui, float x1, float y1, float dWidth, float dHeight, String displayName) 
     {
         super(ui, x1, y1, dWidth, dHeight, displayName);
-        float distWidth = x2 - displacement * 2;
-        float distHeight = y2 - displacement;
+        float distWidth = x2 - displacement * 2 - 6;
+        float distHeight = y2 - displacement - 6;
         int distMultiplier = 12;
         float gridCubeSize = distWidth / distMultiplier;
         int gridCubeHeight = (int) (distHeight / gridCubeSize);
         int sectorCount = 0;
 
-        startX = x1 + displacement;
-        startY = y1 + displacement * 2;
+        startX = x1 + displacement + 3;
+        startY = y1 + displacement * 2 + 3;
         gridSize = gridCubeSize;
         for (int i = 0; i < gridCubeHeight; i++) {
             for (int j = 0; j < distMultiplier; j++) {
 
 
-                ui.sectorButtons.add(new SectorButton(ui, x1 + displacement + gridCubeSize * j, y1 + gridCubeSize * i + displacement * 2, gridCubeSize));
+                ui.sectorButtons.add(new SectorButton(ui, startX + gridCubeSize * j, startY + gridCubeSize * i, gridCubeSize));
 
                 sectorCount ++;
             }

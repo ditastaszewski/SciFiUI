@@ -8,7 +8,7 @@ public class UI extends PApplet
     Button b;
     MovingCircle mc;
     Radar r, rn;
-    Display d;
+    SectorDisplay d;
     SectorMap sm;
     int sectorOption = 0;
     float last = 0;
@@ -48,8 +48,8 @@ public class UI extends PApplet
     {
         //b = new Button(this, 50, 50, 100, 50, "I am a button");
         //mc = new MovingCircle(this, width / 2, height / 2, 50);
-        r = new Radar(this, width / 2, height / 2, 250);
-        d = new Display(this, width/2, 0, width/2, (int) (height * 0.90), "Sector XV");
+        //r = new Radar(this, width / 2, height / 2, 250);
+        d = new SectorDisplay(this, width/2, 0, width/2, (int) (height * 0.90), "Sector Display");
         sm = new SectorMap(this, 0, 0, width/2, (int) (height * 0.50), "Sector Map");
         //rn = new Radar(this, width / 2, height / 2, 500);
     }
@@ -66,8 +66,6 @@ public class UI extends PApplet
 
         int oldWhich = which;
         
-        
-       
         if (mouseX > startX && mouseX < startX + size * sectorColumns && mouseY > startY && mouseY < startY + size * sectorRows)
         {
             if (activeWhich != -1)
@@ -79,22 +77,16 @@ public class UI extends PApplet
             sectorButtons.get(which).setActive(true);
             activeWhich = which;
             sectorOption = which;
-            System.out.println("lol");
         }
         else
         {
             which = -1;
-            
-            
         }
 
         if (which != -1 && oldWhich != -1)
         {
             sectorButtons.get(oldWhich).setActive(false);
         }
-        System.out.println(activeWhich);
-
-
     }
 
     public void draw()
@@ -105,8 +97,8 @@ public class UI extends PApplet
         //mc.update();
         //mc.render();
 
-        r.update();
-        r.render();
+        //r.update();
+        //r.render();
 
         //rn.update();
         //rn.render();
@@ -134,13 +126,11 @@ public class UI extends PApplet
             SectorButton sb = sectorButtons.get(i);
             sb.render();
             sb.update();
-            //System.out.println(sb.x);
-            //System.out.println(sb.y);
         }
 
         if (checkKey(LEFT))
         {
-            System.out.println("Left arrow key pressed");
+            //System.out.println("Left arrow key pressed");
             float delay = sm.getDelay(last);
             
             if (delay > minDelay)
@@ -152,7 +142,6 @@ public class UI extends PApplet
         }
         if (checkKey(RIGHT))
         {
-            System.out.println("Right arrow key pressed");
             float delay = sm.getDelay(last);
             
             if (delay > minDelay)
@@ -163,7 +152,6 @@ public class UI extends PApplet
         }
         if (checkKey(UP))
         {
-            System.out.println("Right arrow key pressed");
             float delay = sm.getDelay(last);
             
             if (delay > minDelay)
@@ -178,7 +166,6 @@ public class UI extends PApplet
         }
         if (checkKey(DOWN))
         {
-            System.out.println("Down arrow key pressed");
             float delay = sm.getDelay(last);
             
             if (delay > minDelay)

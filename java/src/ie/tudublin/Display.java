@@ -34,7 +34,7 @@ public class Display {
         ui.textAlign(0, 0);
         ui.text(displayName, x1 + displacement, y1 + (float)(displacement/1.5));
         ui.line(x1 + displacement, y1 + displacement, x1 + x2 - displacement, y1 + displacement);
-        ui.rect(x1 + displacement, y1 + displacement * 2, x2 - displacement * 2, y2 - displacement);
+        
     }
 
     public void update() 
