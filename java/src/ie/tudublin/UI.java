@@ -1,5 +1,6 @@
 package ie.tudublin;
 
+import java.util.ArrayList;
 import processing.core.PApplet;
 
 public class UI extends PApplet
@@ -11,10 +12,11 @@ public class UI extends PApplet
     SectorMap sm;
     int sectorOption = 0;
     float last = 0;
-    float minDelay = 0.1f;
-
+    float minDelay = 0.2f;
 
     boolean[] keys = new boolean[1024];
+
+    public ArrayList<SectorButton> sectorButtons = new ArrayList<SectorButton>(); 
 
     public void keyPressed()
     {
@@ -70,7 +72,14 @@ public class UI extends PApplet
         sm.update();
         sm.render(sectorOption);
 
-        if (sectorOption > sm.getTotalSectors())
+        for (int i = sectorButtons.size() - 1 ; i >= 0 ; i --)
+        {
+            SectorButton sb = sectorButtons.get(i);
+            sb.render();
+            sb.update();
+        }
+
+        if (sectorOption > sm.getTotalSectors() - 1) 
         {
             sectorOption = 0;
         }

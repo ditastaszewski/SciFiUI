@@ -25,8 +25,8 @@ public class SectorMap extends Display {
         int sectorCount = 0;
         for (int i = 0; i < gridCubeHeight; i++) {
             for (int j = 0; j < distMultiplier; j++) {
-                ui.rect(x1 + displacement + gridCubeSize * j, y1 + gridCubeSize * i + displacement * 2, gridCubeSize,
-                        gridCubeSize);
+                //ui.rect(x1 + displacement + gridCubeSize * j, y1 + gridCubeSize * i + displacement * 2, gridCubeSize,
+                //        gridCubeSize);
 
                 if (activeSector == sectorCount) {
                     ui.stroke(255, 50, 50);
@@ -38,6 +38,8 @@ public class SectorMap extends Display {
                 ui.stroke(203, 203, 203);
                 ui.strokeWeight(1);
                 ui.strokeCap(ROUND);
+
+                ui.sectorButtons.add(new SectorButton(ui, x1 + displacement + gridCubeSize * j, y1 + gridCubeSize * i + displacement * 2, gridCubeSize));
 
                 sectorCount ++;
             }
