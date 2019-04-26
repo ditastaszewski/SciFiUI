@@ -61,12 +61,12 @@ public class UI extends PApplet
         float startX = sm.getStartX();
         float startY = sm.getStartY();
         float size = sm.getGridSize();
+        if (mouseX > startX && mouseX < startX + size * sectorColumns && mouseY > startY && mouseY < startY + size * sectorRows)
+        {
+            which = (int) ((mouseX - startX) / size) + (int) ((mouseY - startY) / size) * sectorColumns;
+        }
         
-        which = (int) ((mouseX - startX) / size) + (int) ((mouseY - startY) / size) * sectorColumns;
-        System.out.println(which);
-
-
-        // The best way!!
+        
        
     }
 
