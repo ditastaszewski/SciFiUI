@@ -1,10 +1,5 @@
 package ie.tudublin;
 
-import static processing.core.PConstants.PROJECT;
-import static processing.core.PConstants.ROUND;
-
-import processing.core.PApplet;
-
 public class SectorMap extends Display {
     private int totalSectors;
     private int totalSectorsWidth;

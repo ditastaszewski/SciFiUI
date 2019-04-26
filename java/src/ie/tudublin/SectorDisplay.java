@@ -1,10 +1,5 @@
 package ie.tudublin;
 
-import static processing.core.PConstants.PROJECT;
-import static processing.core.PConstants.ROUND;
-
-import processing.core.PApplet;
-
 public class SectorDisplay extends Display {
 
     public SectorDisplay(UI ui, float x1, float y1, float dWidth, float dHeight, String displayName) 
@@ -21,7 +16,6 @@ public class SectorDisplay extends Display {
 
     public void update()
     {
-    }
 
-    
+    }
 }

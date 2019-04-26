@@ -1,14 +1,11 @@
 package ie.tudublin;
 
-import processing.core.PApplet;
-
 public class Display {
     protected float x1;
     protected float y1;
     protected float x2;
     protected float y2;
     protected String displayName;
-    private float now;
     private float delay;
 
     UI ui;
