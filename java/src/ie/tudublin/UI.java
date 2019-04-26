@@ -14,6 +14,9 @@ public class UI extends PApplet
     float last = 0;
     float minDelay = 0.2f;
 
+    int which = -1;
+    int activeWhich = 0;
+
     boolean[] keys = new boolean[1024];
 
     public ArrayList<SectorButton> sectorButtons = new ArrayList<SectorButton>(); 
@@ -52,8 +55,7 @@ public class UI extends PApplet
     }
 
     public void mouseClicked()
-    {
-        int which = -1;
+    {        
         int totalSectors = sm.getTotalSectors();
         int sectorColumns = sm.getTotalSectorsWidth();
         int sectorRows = totalSectors / sectorColumns;
@@ -61,22 +63,44 @@ public class UI extends PApplet
         float startX = sm.getStartX();
         float startY = sm.getStartY();
         float size = sm.getGridSize();
-        if (mouseX > startX && mouseX < startX + size * sectorColumns && mouseY > startY && mouseY < startY + size * sectorRows)
-        {
-            which = (int) ((mouseX - startX) / size) + (int) ((mouseY - startY) / size) * sectorColumns;
-        }
+
+        int oldWhich = which;
         
         
        
+        if (mouseX > startX && mouseX < startX + size * sectorColumns && mouseY > startY && mouseY < startY + size * sectorRows)
+        {
+            if (activeWhich != -1)
+            {
+                sectorButtons.get(activeWhich).setActive(false);
+            }
+
+            which = (int) ((mouseX - startX) / size) + (int) ((mouseY - startY) / size) * sectorColumns;
+            sectorButtons.get(which).setActive(true);
+            activeWhich = which;
+            sectorOption = which;
+            System.out.println("lol");
+        }
+        else
+        {
+            which = -1;
+            
+            
+        }
+
+        if (which != -1 && oldWhich != -1)
+        {
+            sectorButtons.get(oldWhich).setActive(false);
+        }
+        System.out.println(activeWhich);
+
+
     }
 
     public void draw()
     {
-        
-
         background(0);
-        //b.render();
-        
+        //b.render();        
 
         //mc.update();
         //mc.render();
@@ -89,7 +113,21 @@ public class UI extends PApplet
         d.update();
         d.render();
         sm.update();
-        sm.render(sectorOption);
+        sm.render();
+
+        if (sectorOption > sm.getTotalSectors() - 1) 
+        {
+            sectorOption = 0;
+            activeWhich = 0;
+        }
+        
+        if (sectorOption < 0)
+        {
+            sectorOption = sm.getTotalSectors() - 1;
+            activeWhich = sectorOption;
+        }
+
+        sectorButtons.get(sectorOption).setActive(true);
 
         for (int i = sectorButtons.size() - 1 ; i >= 0 ; i --)
         {
@@ -98,16 +136,6 @@ public class UI extends PApplet
             sb.update();
             //System.out.println(sb.x);
             //System.out.println(sb.y);
-        }
-
-        if (sectorOption > sm.getTotalSectors() - 1) 
-        {
-            sectorOption = 0;
-        }
-        
-        if (sectorOption < 0)
-        {
-            sectorOption = sm.getTotalSectors() - 1;
         }
 
         if (checkKey(LEFT))
@@ -162,6 +190,14 @@ public class UI extends PApplet
                     sectorOption -= sm.getTotalSectorsWidth() * (sm.getTotalSectors() / sm.getTotalSectorsWidth());
                 }
             }
+        }
+
+        if (checkKey(LEFT) || checkKey(RIGHT) || checkKey(UP) || checkKey(DOWN))
+        {
+
+            sectorButtons.get(activeWhich).setActive(false);
+            activeWhich = sectorOption;
+
         }
     }
 }
