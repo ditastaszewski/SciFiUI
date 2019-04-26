@@ -51,6 +51,25 @@ public class UI extends PApplet
         //rn = new Radar(this, width / 2, height / 2, 500);
     }
 
+    public void mouseClicked()
+    {
+        int which = -1;
+        int totalSectors = sm.getTotalSectors();
+        int sectorColumns = sm.getTotalSectorsWidth();
+        int sectorRows = totalSectors / sectorColumns;
+
+        float startX = sm.getStartX();
+        float startY = sm.getStartY();
+        float size = sm.getGridSize();
+        
+        which = (int) ((mouseX - startX) / size) + (int) ((mouseY - startY) / size) * sectorColumns;
+        System.out.println(which);
+
+
+        // The best way!!
+       
+    }
+
     public void draw()
     {
         
@@ -77,6 +96,8 @@ public class UI extends PApplet
             SectorButton sb = sectorButtons.get(i);
             sb.render();
             sb.update();
+            //System.out.println(sb.x);
+            //System.out.println(sb.y);
         }
 
         if (sectorOption > sm.getTotalSectors() - 1) 
@@ -93,7 +114,6 @@ public class UI extends PApplet
         {
             System.out.println("Left arrow key pressed");
             float delay = sm.getDelay(last);
-            System.out.println(delay);
             
             if (delay > minDelay)
             {
@@ -106,7 +126,6 @@ public class UI extends PApplet
         {
             System.out.println("Right arrow key pressed");
             float delay = sm.getDelay(last);
-            System.out.println(delay);
             
             if (delay > minDelay)
             {
@@ -118,15 +137,14 @@ public class UI extends PApplet
         {
             System.out.println("Right arrow key pressed");
             float delay = sm.getDelay(last);
-            System.out.println(delay);
             
             if (delay > minDelay)
             {
                 last = millis();
-                sectorOption -= sm.getTotalSectorsHeight();
+                sectorOption -= sm.getTotalSectorsWidth();
                 if (sectorOption < 0)
                 {
-                    sectorOption += sm.getTotalSectorsHeight() * (sm.getTotalSectors() / sm.getTotalSectorsHeight());
+                    sectorOption += sm.getTotalSectorsWidth() * (sm.getTotalSectors() / sm.getTotalSectorsWidth());
                 }
             }
         }
@@ -134,15 +152,14 @@ public class UI extends PApplet
         {
             System.out.println("Down arrow key pressed");
             float delay = sm.getDelay(last);
-            System.out.println(delay);
             
             if (delay > minDelay)
             {
                 last = millis();
-                sectorOption += sm.getTotalSectorsHeight();
+                sectorOption += sm.getTotalSectorsWidth();
                 if (sectorOption > sm.getTotalSectors())
                 {
-                    sectorOption -= sm.getTotalSectorsHeight() * (sm.getTotalSectors() / sm.getTotalSectorsHeight());
+                    sectorOption -= sm.getTotalSectorsWidth() * (sm.getTotalSectors() / sm.getTotalSectorsWidth());
                 }
             }
         }

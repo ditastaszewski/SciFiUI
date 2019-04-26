@@ -7,7 +7,10 @@ import processing.core.PApplet;
 
 public class SectorMap extends Display {
     private int totalSectors;
-    private int totalSectorsHeight;
+    private int totalSectorsWidth;
+    private float startX;
+    private float startY;
+    private float gridSize;
 
     public SectorMap(UI ui, float x1, float y1, float dWidth, float dHeight, String displayName) 
     {
@@ -23,6 +26,10 @@ public class SectorMap extends Display {
         float gridCubeSize = distWidth / distMultiplier;
         int gridCubeHeight = (int) (distHeight / gridCubeSize);
         int sectorCount = 0;
+
+        startX = x1 + displacement;
+        startY = y1 + displacement * 2;
+        gridSize = gridCubeSize;
         for (int i = 0; i < gridCubeHeight; i++) {
             for (int j = 0; j < distMultiplier; j++) {
                 //ui.rect(x1 + displacement + gridCubeSize * j, y1 + gridCubeSize * i + displacement * 2, gridCubeSize,
@@ -45,7 +52,7 @@ public class SectorMap extends Display {
             }
         }
         totalSectors = sectorCount;
-        totalSectorsHeight = distMultiplier;
+        totalSectorsWidth = distMultiplier;
     }
 
     public void update()
@@ -70,14 +77,56 @@ public class SectorMap extends Display {
     /**
      * @return the totalSectorsHeight
      */
-    public int getTotalSectorsHeight() {
-        return totalSectorsHeight;
+    public int getTotalSectorsWidth() {
+        return totalSectorsWidth;
     }
 
     /**
      * @param totalSectorsHeight the totalSectorsHeight to set
      */
-    public void setTotalSectorsHeight(int totalSectorsHeight) {
-        this.totalSectorsHeight = totalSectorsHeight;
+    public void setTotalSectorsWidth(int totalSectorsWidth) {
+        this.totalSectorsWidth = totalSectorsWidth;
+    }
+
+    /**
+     * @return the startX
+     */
+    public float getStartX() {
+        return startX;
+    }
+
+    /**
+     * @param startX the startX to set
+     */
+    public void setStartX(float startX) {
+        this.startX = startX;
+    }
+
+    /**
+     * @return the startY
+     */
+    public float getStartY() {
+        return startY;
+    }
+
+    /**
+     * @param startY the startY to set
+     */
+    public void setStartY(float startY) {
+        this.startY = startY;
+    }
+
+    /**
+     * @return the gridSize
+     */
+    public float getGridSize() {
+        return gridSize;
+    }
+
+    /**
+     * @param gridSize the gridSize to set
+     */
+    public void setGridSize(float gridSize) {
+        this.gridSize = gridSize;
     }
 }

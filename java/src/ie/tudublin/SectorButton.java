@@ -6,8 +6,8 @@ public class SectorButton {
     private int totalSectors;
     private int totalSectorsHeight;
 
-    private float x;
-    private float y;
+    public float x;
+    public float y;
     private float size;
 
     UI ui;
