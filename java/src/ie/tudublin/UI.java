@@ -11,7 +11,7 @@ public class UI extends PApplet
     SectorMap sm;
     int sectorOption = 0;
     float last = 0;
-    float minDelay = 0.2f;
+    float minDelay = 0.1f;
 
 
     boolean[] keys = new boolean[1024];

@@ -15,7 +15,8 @@ public class Display {
 
     protected int displacement;
 
-    public Display(UI ui, float x1, float y1, float dWidth, float dHeight, String displayName) {
+    public Display(UI ui, float x1, float y1, float dWidth, float dHeight, String displayName) 
+    {
         this.ui = ui;
         this.x1 = x1;
         this.y1 = y1;
@@ -25,7 +26,8 @@ public class Display {
         this.displacement = (int) (ui.height * 0.05);
     }
 
-    public void render() {
+    public void render() 
+    {
         ui.stroke(203, 203, 203);
         ui.noFill();
         ui.textSize(25);
@@ -35,7 +37,8 @@ public class Display {
         ui.rect(x1 + displacement, y1 + displacement * 2, x2 - displacement * 2, y2 - displacement);
     }
 
-    public void update() {
+    public void update() 
+    {
 
     }
 
