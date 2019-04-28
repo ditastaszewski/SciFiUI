@@ -37,6 +37,10 @@ public class SectorButton {
     {
         //ui.stroke(0, 255, 0);
         ui.rect(x, y, size, size);
+
+        ui.fill(255, 255, 62);
+        ui.circle(x + randX, y + randY, 1);
+        ui.noFill();
         //ui.stroke(203, 203, 203);
     }
 
@@ -47,10 +51,9 @@ public class SectorButton {
             ui.stroke(0, 255, 0);
             ui.rect(x + 5, y + 5, size - 10, size - 10);
             ui.stroke(203, 203, 203);
-            
         }
 
-        if (!sector.getName().equals("Empty Sector"))
+        if (sector != null)
         {
             int r = sector.getColour().r;
             int g = sector.getColour().g;
@@ -62,12 +65,7 @@ public class SectorButton {
             ui.stroke(203, 203, 203);
             ui.noFill();
         }
-        else
-        {
-            ui.fill(255, 255, 62);
-            ui.circle(x + randX, y + randY, 1);
-            ui.noFill();
-        }
+
     }
 
     /**
