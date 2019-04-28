@@ -12,7 +12,7 @@ public class SectorMap extends Display {
         super(ui, x1, y1, dWidth, dHeight, displayName);
         float distWidth = x2 - displacement * 2 - 6;
         float distHeight = y2 - displacement - 6;
-        int distMultiplier = 12;
+        int distMultiplier = 12; //how many sectors we want in one row
         float gridCubeSize = distWidth / distMultiplier;
         int gridCubeHeight = (int) (distHeight / gridCubeSize);
         int sectorCount = 0;
@@ -20,6 +20,8 @@ public class SectorMap extends Display {
         startX = x1 + displacement + 3;
         startY = y1 + displacement * 2 + 3;
         gridSize = gridCubeSize;
+
+        //Creates the sectorbuttons for the grid so that the user can click on them
         for (int i = 0; i < gridCubeHeight; i++) {
             for (int j = 0; j < distMultiplier; j++) {
 

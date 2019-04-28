@@ -68,6 +68,7 @@ public class UI extends PApplet
 
         int oldWhich = which;
         
+        //check if mouse is in the sectormap grid and assign it to the proper sectorbutton object
         if (mouseX > startX && mouseX < startX + size * sectorColumns && mouseY > startY && mouseY < startY + size * sectorRows)
         {
             if (activeWhich != -1)
@@ -84,6 +85,7 @@ public class UI extends PApplet
         {
             which = -1;
         }
+
 
         if (which != -1 && oldWhich != -1)
         {
