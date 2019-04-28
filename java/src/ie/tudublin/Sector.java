@@ -1,7 +1,5 @@
 package ie.tudublin;
 
-import sun.net.www.content.text.plain;
-
 public class Sector
 {
     public int brightness;
@@ -27,6 +25,14 @@ public class Sector
         this.description = description;
     }
 
-    
+    public void createStar()
+    {
+
+    }
+
+    public void createPlanets()
+    {
+
+    }
 
 }
