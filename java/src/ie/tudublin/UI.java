@@ -2,6 +2,8 @@ package ie.tudublin;
 
 import java.util.ArrayList;
 import processing.core.PApplet;
+import processing.data.Table;
+import processing.data.TableRow;
 
 public class UI extends PApplet
 {
@@ -53,7 +55,27 @@ public class UI extends PApplet
         sd = new SectorDisplay(this, width/2, 0, width/2, (int) (height * 0.90), "Sector Display");
         sm = new SectorMap(this, 0, 0, width/2, (int) (height * 0.50), "Sector Map");
         si = new SectorInfo(this, 0, (int) (height * 0.55), width/2, (int) (height * 0.35), "Sector Info");
+        loadSectors();
         //rn = new Radar(this, width / 2, height / 2, 500);
+    }
+
+    public void loadSectors()
+    {
+        Table table = loadTable("sectors.csv", "header");
+        for(TableRow tr:table.rows())
+        {
+            String sectorName = tr.getString("name");
+            String sectorSunColour = tr.getString("colour");
+            String sectorDesc = tr.getString("description");
+
+            int sectorSunBrightness = tr.getInt("brightness");
+            int sectorSunSize = tr.getInt("size");
+            int sectorPopulation = tr.getInt("population");
+            int sectorPlanets = tr.getInt("planets");
+            int sectorHabitablePlanets = tr.getInt("habitable");
+            
+            println(sectorName);
+        }       
     }
 
     public void mouseClicked()
