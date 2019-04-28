@@ -52,7 +52,7 @@ public class UI extends PApplet
         //r = new Radar(this, width / 2, height / 2, 250);
         sd = new SectorDisplay(this, width/2, 0, width/2, (int) (height * 0.90), "Sector Display");
         sm = new SectorMap(this, 0, 0, width/2, (int) (height * 0.50), "Sector Map");
-        si = new SectorInfo(this, 0, (int) (height * 0.50), width/2, (int) (height * 0.40), "Sector Info");
+        si = new SectorInfo(this, 0, (int) (height * 0.55), width/2, (int) (height * 0.35), "Sector Info");
         //rn = new Radar(this, width / 2, height / 2, 500);
     }
 
