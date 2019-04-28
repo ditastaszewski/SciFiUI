@@ -42,9 +42,12 @@ public class SectorButton {
 
         if (sector != null)
         {
+            int r = ui.getColour(sector.getColour()).r;
+            int g = ui.getColour(sector.getColour()).g;
+            int b = ui.getColour(sector.getColour()).b;
             ui.rectMode(PApplet.CENTER);
             ui.stroke(0, 255, 0);
-            ui.fill(255,255,255);
+            ui.fill(r,g,b);
             ui.rect(x + size/2, y + size/2, 5, 5);
             
             ui.rectMode(PApplet.CORNER);
