@@ -1,6 +1,7 @@
 package ie.tudublin;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import processing.core.PApplet;
 import processing.data.Table;
 import processing.data.TableRow;
@@ -23,6 +24,8 @@ public class UI extends PApplet
     boolean[] keys = new boolean[1024];
 
     public ArrayList<SectorButton> sectorButtons = new ArrayList<SectorButton>(); 
+    public ArrayList<Sector> sectors = new ArrayList<Sector>();
+    public ArrayList<Sector> allSectors = new ArrayList<Sector>();
 
     public void keyPressed()
     {
@@ -74,8 +77,20 @@ public class UI extends PApplet
             int sectorPlanets = tr.getInt("planets");
             int sectorHabitablePlanets = tr.getInt("habitable");
             
-            println(sectorName);
-        }       
+            sectors.add(new Sector(sectorSunColour, sectorSunBrightness, sectorSunSize, sectorName, sectorPopulation, sectorPlanets, sectorHabitablePlanets, sectorDesc));
+        }
+        
+        while (sectors.size() < sectorButtons.size())
+        {
+            sectors.add(new Sector("white", 0, 0, "Empty Sector", 0, 0, 0, "An empty sector, nothing to be found here but asteroids and debris."));
+        }
+
+        for (int i = 0 ; i < sectorButtons.size() ; i ++)
+        {
+            sectorButtons.get(i).setSector(sectors.get(i));
+        }
+
+        Collections.shuffle(sectors);
     }
 
     public void mouseClicked()
@@ -132,7 +147,7 @@ public class UI extends PApplet
         sm.render();
         si.render();
 
-        sd.update();
+        sd.update(sectors.get(sectorOption));
         sm.update();
         si.update();
         

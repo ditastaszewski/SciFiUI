@@ -5,7 +5,7 @@ public class Display {
     protected float y1;
     protected float x2;
     protected float y2;
-    protected String displayName;
+    private String displayName;
     private float delay;
 
     UI ui;

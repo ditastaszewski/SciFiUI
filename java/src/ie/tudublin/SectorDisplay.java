@@ -14,8 +14,8 @@ public class SectorDisplay extends Display {
         ui.rect(x1 + displacement, y1 + displacement * 2, x2 - displacement * 2, y2 - displacement);
     }
 
-    public void update()
+    public void update(Sector sector)
     {
-
+        setDisplayName(sector.getName());
     }
 }

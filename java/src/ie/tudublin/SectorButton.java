@@ -10,6 +10,8 @@ public class SectorButton {
 
     private boolean isActive = false;
 
+    private Sector sector;
+
     UI ui;
 
     public SectorButton(UI ui, float x, float y, float size) 
@@ -119,6 +121,20 @@ public class SectorButton {
      */
     public void setActive(boolean isActive) {
         this.isActive = isActive;
+    }
+
+    /**
+     * @return the sector
+     */
+    public Sector getSector() {
+        return sector;
+    }
+
+    /**
+     * @param sector the sector to set
+     */
+    public void setSector(Sector sector) {
+        this.sector = sector;
     }
 
     /**
