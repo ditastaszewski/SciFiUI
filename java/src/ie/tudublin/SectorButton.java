@@ -21,6 +21,7 @@ public class SectorButton {
 
     private int randX;
     private int randY;
+    private int randDisplacement;
 
 
     public SectorButton(UI ui, float x, float y, float size) 
@@ -31,6 +32,7 @@ public class SectorButton {
         this.size = size;
         this.randX = rand.nextInt((int) (size * 0.75)) + 10;
         this.randY = rand.nextInt((int) (size * 0.75)) + 10;
+        this.randDisplacement = rand.nextInt(10);
     }
     
     public void render() 
@@ -39,7 +41,7 @@ public class SectorButton {
         ui.rect(x, y, size, size);
 
         ui.fill(255, 255, 62);
-        ui.circle(x + randX, y + randY, 1);
+        ui.circle(x + randX + PApplet.map(ui.mouseX, 0, ui.width, -1, 3 + randDisplacement), y + randY + PApplet.map(ui.mouseY, 0, ui.height, -1, 3 + randDisplacement) , 1);
         ui.noFill();
         //ui.stroke(203, 203, 203);
     }

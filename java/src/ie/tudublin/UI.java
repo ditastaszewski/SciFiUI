@@ -181,7 +181,7 @@ public class UI extends PApplet
 
         sd.update(sectors.get(sectorOption));
         sm.update();
-        si.update();
+        si.update(sectors.get(sectorOption));
         
 
         if (sectorOption > sm.getTotalSectors() - 1) 

@@ -17,5 +17,6 @@ public class SectorDisplay extends Display {
     public void update(Sector sector)
     {
         setDisplayName(sector.getName());
+        
     }
 }
