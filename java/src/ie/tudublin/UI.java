@@ -25,7 +25,7 @@ public class UI extends PApplet
 
     public ArrayList<SectorButton> sectorButtons = new ArrayList<SectorButton>(); 
     public ArrayList<Sector> sectors = new ArrayList<Sector>();
-    public ArrayList<Sector> allSectors = new ArrayList<Sector>();
+    public ArrayList<Colour> colours = new ArrayList<Colour>();
 
     public void keyPressed()
     {
@@ -55,11 +55,29 @@ public class UI extends PApplet
         //b = new Button(this, 50, 50, 100, 50, "I am a button");
         //mc = new MovingCircle(this, width / 2, height / 2, 50);
         //r = new Radar(this, width / 2, height / 2, 250);
+
+        loadColours();
+
         sd = new SectorDisplay(this, width/2, 0, width/2, (int) (height * 0.90), "Sector Display");
         sm = new SectorMap(this, 0, 0, width/2, (int) (height * 0.50), "Sector Map");
         si = new SectorInfo(this, 0, (int) (height * 0.55), width/2, (int) (height * 0.35), "Sector Info");
         loadSectors();
         //rn = new Radar(this, width / 2, height / 2, 500);
+    }
+
+    public void loadColours()
+    {
+        Table table = loadTable("colours.csv", "header");
+        for(TableRow tr:table.rows())
+        {
+            String colourName = tr.getString("colour");
+
+            int colourR = tr.getInt("r");
+            int colourG = tr.getInt("g");
+            int colourB = tr.getInt("b");
+            
+            colours.add(new Colour(colourName, colourR, colourG, colourB));
+        }
     }
 
     public void loadSectors()
