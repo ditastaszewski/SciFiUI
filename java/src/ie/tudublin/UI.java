@@ -114,6 +114,21 @@ public class UI extends PApplet
         }
     }
 
+    public Colour getColour(String colourName)
+    {
+        Colour colour = null;
+
+        for (int i = 0 ; i < colours.size() ; i ++)
+        {
+            if (colours.get(i).getColour() == colourName)
+            {
+                colour = colours.get(i);
+            }
+        }
+
+        return colour;
+    }
+
     public void mouseClicked()
     {        
         int totalSectors = sm.getTotalSectors();
