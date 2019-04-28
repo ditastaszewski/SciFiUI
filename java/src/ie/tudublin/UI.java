@@ -8,8 +8,9 @@ public class UI extends PApplet
     Button b;
     MovingCircle mc;
     Radar r, rn;
-    SectorDisplay d;
+    SectorDisplay sd;
     SectorMap sm;
+    SectorInfo si;
     int sectorOption = 0;
     float last = 0;
     float minDelay = 0.2f;
@@ -49,8 +50,9 @@ public class UI extends PApplet
         //b = new Button(this, 50, 50, 100, 50, "I am a button");
         //mc = new MovingCircle(this, width / 2, height / 2, 50);
         //r = new Radar(this, width / 2, height / 2, 250);
-        d = new SectorDisplay(this, width/2, 0, width/2, (int) (height * 0.90), "Sector Display");
+        sd = new SectorDisplay(this, width/2, 0, width/2, (int) (height * 0.90), "Sector Display");
         sm = new SectorMap(this, 0, 0, width/2, (int) (height * 0.50), "Sector Map");
+        si = new SectorInfo(this, 0, (int) (height * 0.50), width/2, (int) (height * 0.40), "Sector Info");
         //rn = new Radar(this, width / 2, height / 2, 500);
     }
 
@@ -102,10 +104,14 @@ public class UI extends PApplet
 
         //rn.update();
         //rn.render();
-        d.update();
-        d.render();
-        sm.update();
+        sd.render();
         sm.render();
+        si.render();
+
+        sd.update();
+        sm.update();
+        si.update();
+        
 
         if (sectorOption > sm.getTotalSectors() - 1) 
         {

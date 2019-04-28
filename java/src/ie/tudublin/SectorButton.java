@@ -34,7 +34,6 @@ public class SectorButton {
             ui.stroke(0, 255, 0);
             ui.rect(x + 5, y + 5, size - 10, size - 10);
             ui.stroke(203, 203, 203);
-                    
         }
     }
 
