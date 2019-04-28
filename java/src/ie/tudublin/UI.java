@@ -75,7 +75,6 @@ public class UI extends PApplet
             int colourR = tr.getInt("r");
             int colourG = tr.getInt("g");
             int colourB = tr.getInt("b");
-            
             colours.add(new Colour(colourName, colourR, colourG, colourB));
         }
     }
@@ -95,16 +94,16 @@ public class UI extends PApplet
             int sectorPlanets = tr.getInt("planets");
             int sectorHabitablePlanets = tr.getInt("habitable");
             
-            sectors.add(new Sector(sectorSunColour, sectorSunBrightness, sectorSunSize, sectorName, sectorPopulation, sectorPlanets, sectorHabitablePlanets, sectorDesc));
+            sectors.add(new Sector(findColour(sectorSunColour), sectorSunBrightness, sectorSunSize, sectorName, sectorPopulation, sectorPlanets, sectorHabitablePlanets, sectorDesc));
         }
         
         //add empty sectors to the arraylist
         while (sectors.size() < sectorButtons.size())
         {
-            sectors.add(new Sector("white", 0, 0, "Empty Sector", 0, 0, 0, "An empty sector, nothing to be found here but asteroids and debris."));
+            sectors.add(new Sector(findColour("white"), 0, 0, "Empty Sector", 0, 0, 0, "An empty sector, nothing to be found here but asteroids and debris."));
         }
 
-        //randomize the arraylist for fun
+        //randomize the arraylist for fun and variety
         Collections.shuffle(sectors);
 
         //assign the sectors to sectorbuttons
@@ -114,19 +113,16 @@ public class UI extends PApplet
         }
     }
 
-    public Colour getColour(String colourName)
+    public Colour findColour(String colourName)
     {
-        Colour colour = null;
-
         for (int i = 0 ; i < colours.size() ; i ++)
         {
-            if (colours.get(i).getColour() == colourName)
+            if (colours.get(i).getColourName().equals(colourName))
             {
-                colour = colours.get(i);
+                return colours.get(i);
             }
         }
-
-        return colour;
+        return colours.get(4);
     }
 
     public void mouseClicked()

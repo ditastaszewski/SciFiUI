@@ -1,6 +1,7 @@
 package ie.tudublin;
 
 import processing.core.PApplet;
+import java.util.Random;
 
 public class SectorButton {
     private int totalSectors;
@@ -11,10 +12,16 @@ public class SectorButton {
     private float size;
 
     private boolean isActive = false;
-
+    
     private Sector sector;
 
     UI ui;
+
+    Random rand = new Random();
+
+    private int randX;
+    private int randY;
+
 
     public SectorButton(UI ui, float x, float y, float size) 
     {
@@ -22,6 +29,8 @@ public class SectorButton {
         this.x = x;
         this.y = y;
         this.size = size;
+        this.randX = rand.nextInt((int) (size * 0.75)) + 10;
+        this.randY = rand.nextInt((int) (size * 0.75)) + 10;
     }
     
     public void render() 
@@ -38,21 +47,26 @@ public class SectorButton {
             ui.stroke(0, 255, 0);
             ui.rect(x + 5, y + 5, size - 10, size - 10);
             ui.stroke(203, 203, 203);
+            
         }
 
-        if (sector != null)
+        if (!sector.getName().equals("Empty Sector"))
         {
-            int r = ui.getColour(sector.getColour()).r;
-            int g = ui.getColour(sector.getColour()).g;
-            int b = ui.getColour(sector.getColour()).b;
-            ui.rectMode(PApplet.CENTER);
-            ui.stroke(0, 255, 0);
-            ui.fill(r,g,b);
-            ui.rect(x + size/2, y + size/2, 5, 5);
+            int r = sector.getColour().r;
+            int g = sector.getColour().g;
+            int b = sector.getColour().b;
             
-            ui.rectMode(PApplet.CORNER);
-            ui.noFill();
+            ui.stroke(r, g, b);
+            ui.fill(r, g, b);
+            ui.circle(x + size/2, y + size/2, 4 * sector.size);
             ui.stroke(203, 203, 203);
+            ui.noFill();
+        }
+        else
+        {
+            ui.fill(255, 255, 62);
+            ui.circle(x + randX, y + randY, 1);
+            ui.noFill();
         }
     }
 

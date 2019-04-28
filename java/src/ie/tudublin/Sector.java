@@ -9,11 +9,11 @@ public class Sector
     public int habitable;
 
     private String name;
-    private String colour;
+    private Colour colour;
     private String description;
 
 
-    public Sector(String colour, int brightness, int size, String name, int population, int planets, int habitable, String description)
+    public Sector(Colour colour, int brightness, int size, String name, int population, int planets, int habitable, String description)
     {
         this.colour = colour;
         this.brightness = brightness;
@@ -52,14 +52,14 @@ public class Sector
     /**
      * @return the colour
      */
-    public String getColour() {
+    public Colour getColour() {
         return colour;
     }
 
     /**
      * @param colour the colour to set
      */
-    public void setColour(String colour) {
+    public void setColour(Colour colour) {
         this.colour = colour;
     }
 

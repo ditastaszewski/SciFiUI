@@ -6,11 +6,11 @@ public class Colour
     public int r;
     public int g;
     public int b;
-    private String colour;
+    private String colourName;
 
-    public Colour(String colour, int r, int g, int b)
+    public Colour(String colourName, int r, int g, int b)
     {
-        this.colour = colour;
+        this.colourName = colourName;
         this.r = r;
         this.g = g;
         this.b = b;
@@ -19,14 +19,14 @@ public class Colour
     /**
      * @return the colour
      */
-    public String getColour() {
-        return colour;
+    public String getColourName() {
+        return colourName;
     }
 
     /**
      * @param colour the colour to set
      */
-    public void setColour(String colour) {
-        this.colour = colour;
+    public void setColourName(String colourName) {
+        this.colourName = colourName;
     }
 }

@@ -26,11 +26,12 @@ public class Display {
     public void render() 
     {
         ui.stroke(203, 203, 203);
-        ui.noFill();
+        ui.fill(203, 203, 203);
         ui.textSize(25);
         ui.textAlign(0, 0);
         ui.text(displayName, x1 + displacement, y1 + (float)(displacement/1.5));
         ui.line(x1 + displacement, y1 + displacement, x1 + x2 - displacement, y1 + displacement);
+        ui.noFill();
         
     }
 
