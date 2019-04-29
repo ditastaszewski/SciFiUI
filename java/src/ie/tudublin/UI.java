@@ -58,6 +58,7 @@ public class UI extends PApplet
         //r = new Radar(this, width / 2, height / 2, 250);
 
         loadColours();
+        loadCelestialObjects();
 
         sd = new SectorDisplay(this, width/2, 0, width/2, (int) (height * 0.90), "Sector Display");
         sm = new SectorMap(this, 0, 0, width/2, (int) (height * 0.50), "Sector Map");
@@ -66,7 +67,7 @@ public class UI extends PApplet
         //rn = new Radar(this, width / 2, height / 2, 500);
     }
 
-    public void loadColours()
+    public void loadCelestialObjects()
     {
         Table table = loadTable("objects.csv", "header");
         for(TableRow tr:table.rows())
@@ -79,7 +80,7 @@ public class UI extends PApplet
         }
     }
 
-    public void loadCelestialObjects()
+    public void loadColours()
     {
         Table table = loadTable("colours.csv", "header");
         for(TableRow tr:table.rows())
