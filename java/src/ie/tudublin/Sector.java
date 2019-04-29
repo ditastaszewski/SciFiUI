@@ -29,13 +29,21 @@ public class Sector
         this.habitable = habitable;
         this.description = description;
 
-        if (habitable == 0)
+        if (habitable == 0 && planets > 1)
         {
             this.habitableDesc = "none of these planets are capable of hosting life.";
         }
-        else if (habitable == 1)
+        else if (habitable == 0 && planets == 1)
+        {
+            this.habitableDesc = "it is not capable of hosting life.";
+        }
+        else if (habitable == 1 && planets > 1)
         {
             this.habitableDesc = "only one is habitable.";
+        }
+        else if (planets == 1)
+        {
+            this.habitableDesc = "it is capable of hosting life.";
         }
         else
         {
