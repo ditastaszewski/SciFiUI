@@ -45,13 +45,19 @@ public class SectorObjectInfo {
         ui.textSize(10);
         ui.fill(203, 203, 203);
 
-        String celestialType = objectData.getColourName().toUpperCase();
+        String celestialType = "Body Type: " + objectData.getColourName().toUpperCase();
         if (!celestialType.equals(objectData.getObjectType().toUpperCase()))
         {
             celestialType += " " + objectData.getObjectType().toUpperCase();
         }
+        String weatherType = "";
+        if (!objectData.getColourName().equals("asteroid"))
+        {
+            weatherType += "\nWeather: " + objectData.getWeather();
+        }
 
-        String infoString = "Body Type: " + celestialType + "\nSurface Temperature: " + objectData.getTemperature();
+        String infoString = celestialType + "\nSurface Temperature: " + objectData.getTemperature() + weatherType;
+
         ui.text(infoString, x - size * 3 - width + 10, y - size * 4 - height + 10, width * 0.9f, height);
 
         ui.noFill();

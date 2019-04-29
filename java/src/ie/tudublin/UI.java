@@ -246,12 +246,6 @@ public class UI extends PApplet
 
         sd.update(sector);
         sm.update();
-        si.update(sector);
-        if (objectWhich != -1)
-        {
-            soi.update(sector.getSectorObjects().get(objectWhich));
-        }
-        
 
         sectorButtons.get(sectorOption).setActive(true);
 
@@ -260,6 +254,12 @@ public class UI extends PApplet
             SectorButton sb = sectorButtons.get(i);
             sb.render();
             sb.update();
+        }
+
+        si.update(sector);
+        if (objectWhich != -1)
+        {
+            soi.update(sector.getSectorObjects().get(objectWhich));
         }
 
         if (checkKey(LEFT))
