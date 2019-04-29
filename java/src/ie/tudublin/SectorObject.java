@@ -12,12 +12,13 @@ public class SectorObject
     CelestialObject CO;
     UI ui;
 
-    public SectorObject(UI ui, Sector sector, Colour colour, int size)
+    public SectorObject(UI ui, Sector sector, Colour colour, int size, int distance)
     {
         this.ui = ui;
         this.colour = colour;
         this.size = size;
         this.sector = sector;
+        this.distance = distance;
     }
 
     public void render(float x, float y)

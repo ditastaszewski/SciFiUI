@@ -9,10 +9,10 @@ public class Planet extends SectorObject
 
     Random rand = new Random();
 
-    public Planet(UI ui, Sector sector, Colour colour, int size)
+    public Planet(UI ui, Sector sector, Colour colour, int size, int distance)
     {
-        super(ui, sector, colour, size);
-        this.distance = rand.nextInt((int) (ui.width * 0.15) - 100) + 100;
+        super(ui, sector, colour, size, distance);
+        //this.distance = rand.nextInt((int) (ui.width * 0.15) - 100) + 100;
         this.size = rand.nextInt(5) + 1;
         this.a = rand.nextInt(500) / 100;
     }
@@ -26,8 +26,10 @@ public class Planet extends SectorObject
         ui.stroke(r, g, b);
         ui.fill(r, g, b);
         ui.circle(x + (float)(Math.sin(a) * distance), y + (float)(Math.cos(a) * distance), size * 5);
-        ui.stroke(203, 203, 203);
         ui.noFill();
+        ui.circle(x, y, distance * 2);
+        ui.stroke(203, 203, 203);
+        
 
         a += 0.001 / (distance * distance) * 50000;
     }

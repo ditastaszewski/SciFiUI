@@ -47,7 +47,7 @@ public class Sector
         if (planets > 0)
         {
             createPlanets();
-            checkPlanets();
+            // /checkPlanets();
         }
 
         //Descriptions for info about the sector 
@@ -99,35 +99,42 @@ public class Sector
 
     public void createStar()
     {
-        sectorObjects.add(new Sun(ui, this, colour, size));
+        sectorObjects.add(new Sun(ui, this, colour, size, 0));
     }
 
     public void createPlanets()
     {
+        int distance = rand.nextInt(200 / planets) + 70;
         for (int i = 0 ; i < planets ; i ++)
         {
             if (habitableCount > 0)
             {
-                sectorObjects.add(new Planet(ui, this, ui.colours.get(rand.nextInt(11) + 7), size));
+                sectorObjects.add(new Planet(ui, this, ui.colours.get(rand.nextInt(11) + 7), size, distance));
                 habitableCount --;
             }
             else
             {
-                sectorObjects.add(new Planet(ui, this, ui.colours.get(rand.nextInt(3) + 18), size));
+                sectorObjects.add(new Planet(ui, this, ui.colours.get(rand.nextInt(3) + 18), size, distance));
             }
+
+            distance += rand.nextInt(200 / planets) + 20;
             //sectorObjects.add(new Planet(ui, this, ui.colours.get(rand.nextInt(ui.colours.size() - 7) + 7), size));
         }
     }
 
     public void checkPlanets()
     {
-        for (int i = 2 ; i < sectorObjects.size() ; i ++)
+        for (int i = 0 ; i < sectorObjects.size() - 1; i ++)
         {
-            for (int j = i - 1 ; j > 0 ; j --)
+            for (int j = i + 1 ; j < sectorObjects.size() ; j ++)
             {
-                if ((sectorObjects.get(i).distance - sectorObjects.get(j).distance) < 20 )
+                if ((sectorObjects.get(i).distance - sectorObjects.get(j).distance) < 20)
                 {
-                    sectorObjects.get(i).distance += rand.nextInt(20) + 30;
+                    sectorObjects.get(i).distance += rand.nextInt(20) + 10;
+                }
+                else if ((sectorObjects.get(j).distance - sectorObjects.get(i).distance) < 20)
+                {
+                    sectorObjects.get(j).distance += rand.nextInt(5) + 5;
                 }
             }
         }
