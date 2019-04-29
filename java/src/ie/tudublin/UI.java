@@ -80,10 +80,11 @@ public class UI extends PApplet
         for(TableRow tr:table.rows())
         {
             String colourName = tr.getString("colour");
+            String objectType = tr.getString("type");
             String temperature = tr.getString("temperature");
             String weather = tr.getString("weather");
 
-            celestialObjects.add(new CelestialObject(colourName, temperature, weather));
+            celestialObjects.add(new CelestialObject(colourName, objectType, temperature, weather));
         }
     }
 
@@ -199,6 +200,7 @@ public class UI extends PApplet
         }
 
         //Checking the sector planets/sun/asteroids
+        objectWhich = -1;
         Sector sector = sectors.get(sectorOption);
         for (int i = 0 ; i < sector.getSectorObjects().size() ; i ++)
         {

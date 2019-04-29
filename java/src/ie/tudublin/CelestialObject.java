@@ -4,12 +4,14 @@ package ie.tudublin;
 public class CelestialObject
 {
     private String colourName;
+    private String objectType;
     private String temperature;
     private String weather;
 
-    public CelestialObject(String colourName, String temperature, String weather)
+    public CelestialObject(String colourName, String objectType, String temperature, String weather)
     {
         this.colourName = colourName;
+        this.objectType = objectType;
         this.temperature = temperature;
         this.weather = weather;
     }
@@ -54,5 +56,19 @@ public class CelestialObject
      */
     public void setWeather(String weather) {
         this.weather = weather;
+    }
+
+    /**
+     * @return the objectType
+     */
+    public String getObjectType() {
+        return objectType;
+    }
+
+    /**
+     * @param objectType the objectType to set
+     */
+    public void setObjectType(String objectType) {
+        this.objectType = objectType;
     }
 }

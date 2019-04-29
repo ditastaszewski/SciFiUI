@@ -2,9 +2,7 @@ package ie.tudublin;
 
 public class SectorObjectInfo {
 
-    public float x;
-    public float y;
-    public int size;
+    
     SectorObject sectorObject;
     UI ui;
 
@@ -19,18 +17,43 @@ public class SectorObjectInfo {
 
     }
 
-    public void update(SectorObject sectorObject)
+    public void update(SectorObject so)
     {
-        x = sectorObject.rX;
-        y = sectorObject.rY;
-        size = sectorObject.size;
+        float x;
+        float y;
+        int size;
+        int width;
+        int height;
+
+        x = so.rX;
+        y = so.rY;
+        size = so.size;
         if (size < 10)
         {
             size = 10;
         }
+        width = ui.width/10;
+        height = ui.height/10;
+
+        CelestialObject objectData = ui.findObject(so.colour.getColourName());
+
         ui.line(x, y, x - size * 3, y - size * 4);
         ui.fill(0);
-        ui.rect(x - size * 3 - ui.width/10, y - size * 4 - ui.height/10, ui.width/10, ui.height/10);
+        ui.rect(x - size * 3 - width, y - size * 4 - height, width, height);
+        ui.noFill();
+
+        ui.textSize(10);
+        ui.fill(203, 203, 203);
+
+        String celestialType = objectData.getColourName().toUpperCase();
+        if (!celestialType.equals(objectData.getObjectType().toUpperCase()))
+        {
+            celestialType += " " + objectData.getObjectType().toUpperCase();
+        }
+
+        String infoString = "Body Type: " + celestialType + "\nSurface Temperature: " + objectData.getTemperature();
+        ui.text(infoString, x - size * 3 - width + 10, y - size * 4 - height + 10, width * 0.9f, height);
+
         ui.noFill();
     }
 }
