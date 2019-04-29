@@ -6,7 +6,7 @@ orange,255,187,0
 yellow,255,255,62
 green,98,255,130
 asteroid,79,85,72
-brown,119,47,0
+rocky,119,47,0
 terran,119,151,0
 lush,119,196,0
 savanna,176,142,0
@@ -19,3 +19,4 @@ sea,0,166,191
 arctic,0,221,185
 frozen,210,242,230
 magma,225,96,42
+barren,127,123,134

@@ -10,6 +10,7 @@ public class Sector
     public int population;
     public int planets;
     public int habitable;
+    public int habitableCount;
 
     private String name;
     private Colour colour;
@@ -35,6 +36,7 @@ public class Sector
         this.population = population;
         this.planets = planets;
         this.habitable = habitable;
+        this.habitableCount = habitable;
         this.description = description;
 
         if (size > 0)
@@ -104,7 +106,16 @@ public class Sector
     {
         for (int i = 0 ; i < planets ; i ++)
         {
-            sectorObjects.add(new Planet(ui, this, ui.colours.get(rand.nextInt(ui.colours.size() - 7) + 7), size));
+            if (habitableCount > 0)
+            {
+                sectorObjects.add(new Planet(ui, this, ui.colours.get(rand.nextInt(11) + 7), size));
+                habitableCount --;
+            }
+            else
+            {
+                sectorObjects.add(new Planet(ui, this, ui.colours.get(rand.nextInt(3) + 18), size));
+            }
+            //sectorObjects.add(new Planet(ui, this, ui.colours.get(rand.nextInt(ui.colours.size() - 7) + 7), size));
         }
     }
 
@@ -116,7 +127,7 @@ public class Sector
             {
                 if ((sectorObjects.get(i).distance - sectorObjects.get(j).distance) < 20 )
                 {
-                    sectorObjects.get(i).distance += rand.nextInt(60) + 20;
+                    sectorObjects.get(i).distance += rand.nextInt(20) + 30;
                 }
             }
         }
