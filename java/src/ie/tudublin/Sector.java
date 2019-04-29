@@ -48,6 +48,11 @@ public class Sector
         {
             createPlanets();
         }
+        
+        if (name.equals("Empty Sector"))
+        {
+            createAsteroids();
+        }
 
         //Descriptions for info about the sector 
         if (habitable == 0 && planets > 1)
@@ -121,7 +126,18 @@ public class Sector
             //distance += 200 / planets + 20;
         }
     }
-    
+
+    public void createAsteroids()
+    {
+        int distance = 15;
+        for (int i = 0 ; i < rand.nextInt(20) + 30 ; i ++)
+        {
+            sectorObjects.add(new Asteroid(ui, this, ui.findColour("asteroid"), rand.nextInt(2) + 1, distance));
+            distance += rand.nextInt(5) + 5;
+        }
+        
+    }
+
     /**
      * @return the name
      */

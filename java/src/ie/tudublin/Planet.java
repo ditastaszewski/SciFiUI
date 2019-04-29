@@ -12,7 +12,7 @@ public class Planet extends SectorObject
         super(ui, sector, colour, size, distance);
         //this.distance = rand.nextInt((int) (ui.width * 0.15) - 100) + 100;
         this.size = size;
-        this.a = rand.nextInt(500) / 100;
+        this.a = rand.nextInt(500);
     }
 
     
