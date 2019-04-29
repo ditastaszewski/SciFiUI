@@ -2,6 +2,9 @@ package ie.tudublin;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import javax.lang.model.util.ElementScanner6;
+
 import processing.core.PApplet;
 import processing.data.Table;
 import processing.data.TableRow;
@@ -14,12 +17,15 @@ public class UI extends PApplet
     SectorDisplay sd;
     SectorMap sm;
     SectorInfo si;
+    SectorObjectInfo soi;
     int sectorOption = 0;
     float last = 0;
     float minDelay = 0.2f;
 
     int which = -1;
     int activeWhich = 0;
+
+    int objectWhich = -1;
 
     boolean[] keys = new boolean[1024];
 
@@ -63,6 +69,7 @@ public class UI extends PApplet
         sd = new SectorDisplay(this, width/2, 0, width/2, (int) (height * 0.90), "Sector Display");
         sm = new SectorMap(this, 0, 0, width/2, (int) (height * 0.50), "Sector Map");
         si = new SectorInfo(this, 0, (int) (height * 0.55), width/2, (int) (height * 0.35), "Sector Info");
+        soi = new SectorObjectInfo(this);
         loadSectors();
         //rn = new Radar(this, width / 2, height / 2, 500);
     }
@@ -154,6 +161,7 @@ public class UI extends PApplet
 
     public void mouseClicked()
     {        
+        //Checking the sector buttons
         int totalSectors = sm.getTotalSectors();
         int sectorColumns = sm.getTotalSectorsWidth();
         int sectorRows = totalSectors / sectorColumns;
@@ -176,16 +184,30 @@ public class UI extends PApplet
             sectorButtons.get(which).setActive(true);
             activeWhich = which;
             sectorOption = which;
+            objectWhich = -1;
         }
         else
         {
             which = -1;
+            
         }
 
 
         if (which != -1 && oldWhich != -1)
         {
             sectorButtons.get(oldWhich).setActive(false);
+        }
+
+        //Checking the sector planets/sun/asteroids
+        Sector sector = sectors.get(sectorOption);
+        for (int i = 0 ; i < sector.getSectorObjects().size() ; i ++)
+        {
+            SectorObject so = sector.getSectorObjects().get(i);
+            int clickSize = so.size * 3;
+            if (mouseX > so.rX - clickSize && mouseX < so.rX + clickSize && mouseY > so.rY - clickSize && mouseY < so.rY + clickSize)
+            {
+                objectWhich = i;
+            }
         }
     }
 
@@ -211,10 +233,16 @@ public class UI extends PApplet
         sd.render();
         sm.render();
         si.render();
+        soi.render();
 
         sd.update(sector);
         sm.update();
         si.update(sector);
+        if (objectWhich != -1)
+        {
+            soi.update(sector.getSectorObjects().get(objectWhich));
+        }
+        
 
         sectorButtons.get(sectorOption).setActive(true);
 
@@ -224,11 +252,6 @@ public class UI extends PApplet
             sb.render();
             sb.update();
         }
-
-
-        
-
-
 
         if (checkKey(LEFT))
         {
