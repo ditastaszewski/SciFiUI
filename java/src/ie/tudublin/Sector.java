@@ -2,6 +2,10 @@ package ie.tudublin;
 
 import javax.lang.model.util.ElementScanner6;
 
+import sun.security.provider.Sun;
+
+import java.util.ArrayList;
+
 public class Sector
 {
     public int brightness;
@@ -17,6 +21,8 @@ public class Sector
     private String habitableDesc;
     private String populationDesc;
 
+    public ArrayList<SectorObject> sectorObjects = new ArrayList<SectorObject>();
+
 
     public Sector(Colour colour, int brightness, int size, String name, int population, int planets, int habitable, String description)
     {
@@ -29,6 +35,17 @@ public class Sector
         this.habitable = habitable;
         this.description = description;
 
+        if (size > 0)
+        {
+            createStar();
+        }
+
+        if (planets > 0)
+        {
+            createPlanets();
+        }
+
+        //Descriptions for info about the sector 
         if (habitable == 0 && planets > 1)
         {
             this.habitableDesc = "none of these planets are capable of hosting life.";
@@ -72,16 +89,20 @@ public class Sector
         {
             this.populationDesc = "This sector is home to around " + population + " million beings.";
         }
+
     }
 
     public void createStar()
     {
-
+        sectorObjects.add(new Sun(this, colour, size));
     }
 
     public void createPlanets()
     {
-
+        for (int i = 0 ; i < planets ; i ++)
+        {
+            sectorObjects.add(new Planet(this, colour, size));
+        }
     }
 
     /**

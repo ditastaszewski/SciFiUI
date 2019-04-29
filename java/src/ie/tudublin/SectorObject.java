@@ -5,11 +5,11 @@ public class SectorObject
     public int brightness;
     public int size;
 
-    private String colour;
+    private Colour colour;
     private Sector sector;
 
 
-    public SectorObject(Sector sector, String colour, int size)
+    public SectorObject(Sector sector, Colour colour, int size)
     {
         this.colour = colour;
         this.size = size;
