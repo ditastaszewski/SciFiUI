@@ -47,7 +47,6 @@ public class Sector
         if (planets > 0)
         {
             createPlanets();
-            // /checkPlanets();
         }
 
         //Descriptions for info about the sector 
@@ -122,25 +121,7 @@ public class Sector
             //distance += 200 / planets + 20;
         }
     }
-
-    public void checkPlanets()
-    {
-        for (int i = 0 ; i < sectorObjects.size() - 1; i ++)
-        {
-            for (int j = i + 1 ; j < sectorObjects.size() ; j ++)
-            {
-                if ((sectorObjects.get(i).distance - sectorObjects.get(j).distance) < 20)
-                {
-                    sectorObjects.get(i).distance += rand.nextInt(20) + 10;
-                }
-                else if ((sectorObjects.get(j).distance - sectorObjects.get(i).distance) < 20)
-                {
-                    sectorObjects.get(j).distance += rand.nextInt(5) + 5;
-                }
-            }
-        }
-    }
-
+    
     /**
      * @return the name
      */
