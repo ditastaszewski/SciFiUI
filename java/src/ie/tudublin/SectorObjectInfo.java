@@ -46,13 +46,11 @@ public class SectorObjectInfo {
         ui.fill(203, 203, 203);
 
         String celestialType = "Body Type: " + objectData.getColourName().toUpperCase();
-        if (!celestialType.equals(objectData.getObjectType().toUpperCase()))
-        {
-            celestialType += " " + objectData.getObjectType().toUpperCase();
-        }
         String weatherType = "";
+        
         if (!objectData.getColourName().equals("asteroid"))
         {
+            celestialType += " " + objectData.getObjectType().toUpperCase();
             weatherType += "\nWeather: " + objectData.getWeather();
         }
 
