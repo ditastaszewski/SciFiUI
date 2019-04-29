@@ -6,6 +6,8 @@ public class SectorObject
     public int size;
     public int distance;
     public float a;
+    public float rX;
+    public float rY;
 
     Colour colour;
     Sector sector;
@@ -27,17 +29,19 @@ public class SectorObject
         int r = colour.r;
         int g = colour.g;
         int b = colour.b;
+        rX = x + (float)(Math.sin(a) * distance);
+        rY = y + (float)(Math.cos(a) * distance);
         
         ui.stroke(r, g, b);
         ui.fill(r, g, b);
-        ui.circle(x + (float)(Math.sin(a) * distance), y + (float)(Math.cos(a) * distance), size * 5);
+        ui.circle(rX, rY, size * 5);
         ui.noFill();
         ui.circle(x, y, distance * 2);
         ui.stroke(203, 203, 203);
         
         if (distance > 0)
         {
-            a += 0.001 / (distance * distance) * 50000;
+            a += 0.001 / (distance * distance) * 20000;
         }
         else
         {
