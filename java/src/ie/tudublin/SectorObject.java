@@ -4,6 +4,7 @@ public class SectorObject
 {
     public int brightness;
     public int size;
+    public int distance;
 
     Colour colour;
     Sector sector;

@@ -22,6 +22,8 @@ public class Sector
 
     UI ui;
 
+    Random rand = new Random();
+
 
     public Sector(UI ui, Colour colour, int brightness, int size, String name, int population, int planets, int habitable, String description)
     {
@@ -43,6 +45,7 @@ public class Sector
         if (planets > 0)
         {
             createPlanets();
+            checkPlanets();
         }
 
         //Descriptions for info about the sector 
@@ -101,8 +104,21 @@ public class Sector
     {
         for (int i = 0 ; i < planets ; i ++)
         {
-            Random rand = new Random();
             sectorObjects.add(new Planet(ui, this, ui.colours.get(rand.nextInt(ui.colours.size() - 7) + 7), size));
+        }
+    }
+
+    public void checkPlanets()
+    {
+        for (int i = 2 ; i < sectorObjects.size() ; i ++)
+        {
+            for (int j = i - 1 ; j > 0 ; j --)
+            {
+                if ((sectorObjects.get(i).distance - sectorObjects.get(j).distance) < 20 )
+                {
+                    sectorObjects.get(i).distance += rand.nextInt(60) + 20;
+                }
+            }
         }
     }
 
