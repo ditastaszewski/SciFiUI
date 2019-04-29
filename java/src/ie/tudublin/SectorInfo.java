@@ -18,16 +18,18 @@ public class SectorInfo extends Display {
     {
         ui.textSize(20);
         
-        ui.text(sector.getDescription(), x1 + displacement * 1.5f, y1 + displacement * 3.5f, x2 - displacement * 3, y2 - displacement);
+        
 
         if (!sector.getName().equals("Empty Sector"))
         {
             ui.text("Sector: " + sector.getName(), x1 + displacement * 1.5f, y1 + displacement * 3);
+            ui.text(sector.getDescription() + "\n" + sector.getPlanetsDesc() + sector.getHabitableDesc(), x1 + displacement * 1.5f, y1 + displacement * 3.5f, x2 - displacement * 3, y2 - displacement);
             ui.text("Star Colour: " + sector.getColour().getColourName().toUpperCase() + " - Star Brightness: " + sector.brightness, x1 + displacement * 1.5f, y1 + displacement * 6f);
-            ui.text("Star Colour: " + sector.getColour().getColourName().toUpperCase() + " - Star Brightness: " + sector.brightness, x1 + displacement * 1.5f, y1 + displacement * 6f);
+            ui.text(sector.getPopulationDesc(), x1 + displacement * 1.5f, y1 + displacement * 6.5f);
         }
         else
         {
+            ui.text(sector.getDescription(), x1 + displacement * 1.5f, y1 + displacement * 3.5f, x2 - displacement * 3, y2 - displacement);
             ui.text(sector.getName(), x1 + displacement * 1.5f, y1 + displacement * 3);
         }
         
