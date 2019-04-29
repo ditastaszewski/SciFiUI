@@ -104,7 +104,8 @@ public class Sector
 
     public void createPlanets()
     {
-        int distance = rand.nextInt(200 / planets) + 70;
+        int distance = rand.nextInt(150 / planets) + 70;
+        //int distance = 150 / planets + 70;
         for (int i = 0 ; i < planets ; i ++)
         {
             if (habitableCount > 0)
@@ -118,7 +119,7 @@ public class Sector
             }
 
             distance += rand.nextInt(200 / planets) + 20;
-            //sectorObjects.add(new Planet(ui, this, ui.colours.get(rand.nextInt(ui.colours.size() - 7) + 7), size));
+            //distance += 200 / planets + 20;
         }
     }
 
