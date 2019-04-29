@@ -140,6 +140,18 @@ public class UI extends PApplet
         return colours.get(4);
     }
 
+    public CelestialObject findObject(String colourName)
+    {
+        for (int i = 0 ; i < celestialObjects.size() ; i ++)
+        {
+            if (celestialObjects.get(i).getColourName().equals(colourName))
+            {
+                return celestialObjects.get(i);
+            }
+        }
+        return celestialObjects.get(4);
+    }
+
     public void mouseClicked()
     {        
         int totalSectors = sm.getTotalSectors();
