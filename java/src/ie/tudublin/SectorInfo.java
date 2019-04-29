@@ -24,8 +24,7 @@ public class SectorInfo extends Display {
         {
             ui.text("Sector: " + sector.getName(), x1 + displacement * 1.5f, y1 + displacement * 3);
             ui.text(sector.getDescription() + "\n" + sector.getPlanetsDesc() + sector.getHabitableDesc(), x1 + displacement * 1.5f, y1 + displacement * 3.5f, x2 - displacement * 3, y2 - displacement);
-            ui.text("Star Colour: " + sector.getColour().getColourName().toUpperCase() + " - Star Brightness: " + sector.brightness, x1 + displacement * 1.5f, y1 + displacement * 6f);
-            ui.text(sector.getPopulationDesc(), x1 + displacement * 1.5f, y1 + displacement * 6.5f);
+            ui.text("Star Colour: " + sector.getColour().getColourName().toUpperCase() + " - Star Brightness: " + sector.brightness + "\n" + sector.getPopulationDesc(), x1 + displacement * 1.5f, y1 + displacement * 6.5f);
         }
         else
         {

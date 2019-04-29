@@ -31,7 +31,7 @@ public class Sector
 
         if (habitable == 0)
         {
-            this.habitableDesc = "none of the planets are capable of hosting life.";
+            this.habitableDesc = "none of these planets are capable of hosting life.";
         }
         else if (habitable == 1)
         {
