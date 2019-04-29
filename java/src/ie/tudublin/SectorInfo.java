@@ -17,6 +17,7 @@ public class SectorInfo extends Display {
     public void update(Sector sector)
     {
         ui.textSize(20);
+        ui.fill(203, 203, 203);
         
         
 
@@ -31,6 +32,8 @@ public class SectorInfo extends Display {
             ui.text(sector.getDescription(), x1 + displacement * 1.5f, y1 + displacement * 3.5f, x2 - displacement * 3, y2 - displacement);
             ui.text(sector.getName(), x1 + displacement * 1.5f, y1 + displacement * 3);
         }
+
+        ui.noFill();
         
 
         

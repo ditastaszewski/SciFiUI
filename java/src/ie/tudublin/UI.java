@@ -205,13 +205,16 @@ public class UI extends PApplet
             activeWhich = sectorOption;
         }
 
+        Sector sector = sectors.get(sectorOption);
+       
+
         sd.render();
         sm.render();
         si.render();
 
-        sd.update(sectors.get(sectorOption));
+        sd.update(sector);
         sm.update();
-        si.update(sectors.get(sectorOption));
+        si.update(sector);
 
         sectorButtons.get(sectorOption).setActive(true);
 
@@ -221,6 +224,11 @@ public class UI extends PApplet
             sb.render();
             sb.update();
         }
+
+
+        
+
+
 
         if (checkKey(LEFT))
         {

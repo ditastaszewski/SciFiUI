@@ -94,7 +94,7 @@ public class Sector
 
     public void createStar()
     {
-        sectorObjects.add(new Sun(this, colour, size));
+        sectorObjects.add(new Sun(ui, this, colour, size));
     }
 
     public void createPlanets()
@@ -102,7 +102,7 @@ public class Sector
         for (int i = 0 ; i < planets ; i ++)
         {
             Random rand = new Random();
-            sectorObjects.add(new Planet(this, ui.colours.get(rand.nextInt(ui.colours.size() - 6) + 6), size));
+            sectorObjects.add(new Planet(ui, this, ui.colours.get(rand.nextInt(ui.colours.size() - 7) + 7), size));
         }
     }
 
@@ -188,6 +188,118 @@ public class Sector
      */
     public void getPopulationDesc(String populationDesc) {
         this.populationDesc = populationDesc;
+    }
+
+    /**
+     * @return the brightness
+     */
+    public int getBrightness() {
+        return brightness;
+    }
+
+    /**
+     * @param brightness the brightness to set
+     */
+    public void setBrightness(int brightness) {
+        this.brightness = brightness;
+    }
+
+    /**
+     * @return the size
+     */
+    public int getSize() {
+        return size;
+    }
+
+    /**
+     * @param size the size to set
+     */
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    /**
+     * @return the population
+     */
+    public int getPopulation() {
+        return population;
+    }
+
+    /**
+     * @param population the population to set
+     */
+    public void setPopulation(int population) {
+        this.population = population;
+    }
+
+    /**
+     * @return the planets
+     */
+    public int getPlanets() {
+        return planets;
+    }
+
+    /**
+     * @param planets the planets to set
+     */
+    public void setPlanets(int planets) {
+        this.planets = planets;
+    }
+
+    /**
+     * @return the habitable
+     */
+    public int getHabitable() {
+        return habitable;
+    }
+
+    /**
+     * @param habitable the habitable to set
+     */
+    public void setHabitable(int habitable) {
+        this.habitable = habitable;
+    }
+
+    /**
+     * @param habitableDesc the habitableDesc to set
+     */
+    public void setHabitableDesc(String habitableDesc) {
+        this.habitableDesc = habitableDesc;
+    }
+
+    /**
+     * @param populationDesc the populationDesc to set
+     */
+    public void setPopulationDesc(String populationDesc) {
+        this.populationDesc = populationDesc;
+    }
+
+    /**
+     * @return the sectorObjects
+     */
+    public ArrayList<SectorObject> getSectorObjects() {
+        return sectorObjects;
+    }
+
+    /**
+     * @param sectorObjects the sectorObjects to set
+     */
+    public void setSectorObjects(ArrayList<SectorObject> sectorObjects) {
+        this.sectorObjects = sectorObjects;
+    }
+
+    /**
+     * @return the ui
+     */
+    public UI getUi() {
+        return ui;
+    }
+
+    /**
+     * @param ui the ui to set
+     */
+    public void setUi(UI ui) {
+        this.ui = ui;
     }
 
 }
