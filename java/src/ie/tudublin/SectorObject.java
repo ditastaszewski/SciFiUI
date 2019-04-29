@@ -36,9 +36,13 @@ public class SectorObject
         ui.fill(r, g, b);
         ui.circle(rX, rY, size * 5);
         ui.noFill();
-        ui.circle(x, y, distance * 2);
         ui.stroke(203, 203, 203);
-        
+
+        orbit();
+    }
+
+    public void orbit()
+    {
         if (distance > 0)
         {
             a += 0.001 / (distance * distance) * 20000;
@@ -47,6 +51,5 @@ public class SectorObject
         {
             a = 0;
         }
-        
     }
 }

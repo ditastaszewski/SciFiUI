@@ -206,7 +206,14 @@ public class UI extends PApplet
             int clickSize = so.size * 3;
             if (mouseX > so.rX - clickSize && mouseX < so.rX + clickSize && mouseY > so.rY - clickSize && mouseY < so.rY + clickSize)
             {
-                objectWhich = i;
+                if (objectWhich == i)
+                {
+                    objectWhich = -1;
+                }
+                else
+                {
+                    objectWhich = i;
+                }
             }
         }
     }

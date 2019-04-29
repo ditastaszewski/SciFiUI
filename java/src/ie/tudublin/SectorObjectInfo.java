@@ -29,6 +29,8 @@ public class SectorObjectInfo {
             size = 10;
         }
         ui.line(x, y, x - size * 3, y - size * 4);
-        ui.rect(x - size * 9, y - size * 10, size * 6, size * 6);
+        ui.fill(0);
+        ui.rect(x - size * 3 - ui.width/10, y - size * 4 - ui.height/10, ui.width/10, ui.height/10);
+        ui.noFill();
     }
 }

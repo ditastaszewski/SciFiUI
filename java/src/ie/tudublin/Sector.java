@@ -109,18 +109,21 @@ public class Sector
     public void createPlanets()
     {
         int distance = rand.nextInt(150 / planets) + 70;
+        Colour newPlanetColour;
         //int distance = 150 / planets + 70;
         for (int i = 0 ; i < planets ; i ++)
         {
             if (habitableCount > 0)
             {
-                sectorObjects.add(new Planet(ui, this, ui.colours.get(rand.nextInt(11) + 7), rand.nextInt(4) + 1, distance));
+                newPlanetColour = ui.colours.get(rand.nextInt(11) + 7);
                 habitableCount --;
             }
             else
             {
-                sectorObjects.add(new Planet(ui, this, ui.colours.get(rand.nextInt(3) + 18), rand.nextInt(4) + 1, distance));
+                newPlanetColour = ui.colours.get(rand.nextInt(3) + 18);
             }
+
+            sectorObjects.add(new Planet(ui, this, newPlanetColour, rand.nextInt(4) + 2, distance));
 
             distance += rand.nextInt(200 / planets) + 20;
             //distance += 200 / planets + 20;

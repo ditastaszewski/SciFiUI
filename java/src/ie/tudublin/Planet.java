@@ -15,5 +15,18 @@ public class Planet extends SectorObject
         this.a = rand.nextInt(500);
     }
 
+    public void render(float x, float y)
+    {
+        super.render(x, y);
+        
+        int r = colour.r;
+        int g = colour.g;
+        int b = colour.b;
+
+        ui.stroke(r, g, b);
+        ui.circle(x, y, distance * 2);
+        ui.stroke(203, 203, 203);
+    }
+
     
 }
