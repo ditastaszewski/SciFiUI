@@ -165,24 +165,6 @@ public class UI extends PApplet
     public void draw()
     {
         background(0);
-        //b.render();        
-
-        //mc.update();
-        //mc.render();
-
-        //r.update();
-        //r.render();
-
-        //rn.update();
-        //rn.render();
-        sd.render();
-        sm.render();
-        si.render();
-
-        sd.update(sectors.get(sectorOption));
-        sm.update();
-        si.update(sectors.get(sectorOption));
-        
 
         if (sectorOption > sm.getTotalSectors() - 1) 
         {
@@ -195,6 +177,14 @@ public class UI extends PApplet
             sectorOption = sm.getTotalSectors() - 1;
             activeWhich = sectorOption;
         }
+
+        sd.render();
+        sm.render();
+        si.render();
+
+        sd.update(sectors.get(sectorOption));
+        sm.update();
+        si.update(sectors.get(sectorOption));
 
         sectorButtons.get(sectorOption).setActive(true);
 
