@@ -5,6 +5,7 @@ public class SectorObject
     public int brightness;
     public int size;
     public int distance;
+    public float a;
 
     Colour colour;
     Sector sector;
@@ -23,6 +24,25 @@ public class SectorObject
 
     public void render(float x, float y)
     {
-
+        int r = colour.r;
+        int g = colour.g;
+        int b = colour.b;
+        
+        ui.stroke(r, g, b);
+        ui.fill(r, g, b);
+        ui.circle(x + (float)(Math.sin(a) * distance), y + (float)(Math.cos(a) * distance), size * 5);
+        ui.noFill();
+        ui.circle(x, y, distance * 2);
+        ui.stroke(203, 203, 203);
+        
+        if (distance > 0)
+        {
+            a += 0.001 / (distance * distance) * 50000;
+        }
+        else
+        {
+            a = 0;
+        }
+        
     }
 }

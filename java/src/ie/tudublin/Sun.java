@@ -6,18 +6,6 @@ public class Sun extends SectorObject
     {
         super(ui, sector, colour, size, distance);
         this.distance = 0;
-    }
-
-    public void render(float x, float y)
-    {
-        int r = colour.r;
-        int g = colour.g;
-        int b = colour.b;
-        
-        ui.stroke(r, g, b);
-        ui.fill(r, g, b);
-        ui.circle(x, y, sector.size * 40);
-        ui.stroke(203, 203, 203);
-        ui.noFill();
+        this.size = size * 8;
     }
 }

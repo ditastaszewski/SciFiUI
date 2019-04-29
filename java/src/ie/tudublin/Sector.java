@@ -92,7 +92,7 @@ public class Sector
         }
         else
         {
-            this.populationDesc = "This sector is home to around " + population + " million beings.";
+            this.populationDesc = "This sector is home to around " + population + " million life forms.";
         }
 
     }
@@ -110,12 +110,12 @@ public class Sector
         {
             if (habitableCount > 0)
             {
-                sectorObjects.add(new Planet(ui, this, ui.colours.get(rand.nextInt(11) + 7), size, distance));
+                sectorObjects.add(new Planet(ui, this, ui.colours.get(rand.nextInt(11) + 7), rand.nextInt(4) + 1, distance));
                 habitableCount --;
             }
             else
             {
-                sectorObjects.add(new Planet(ui, this, ui.colours.get(rand.nextInt(3) + 18), size, distance));
+                sectorObjects.add(new Planet(ui, this, ui.colours.get(rand.nextInt(3) + 18), rand.nextInt(4) + 1, distance));
             }
 
             distance += rand.nextInt(200 / planets) + 20;
