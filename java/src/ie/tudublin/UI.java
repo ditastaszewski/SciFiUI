@@ -26,6 +26,7 @@ public class UI extends PApplet
     public ArrayList<SectorButton> sectorButtons = new ArrayList<SectorButton>(); 
     public ArrayList<Sector> sectors = new ArrayList<Sector>();
     public ArrayList<Colour> colours = new ArrayList<Colour>();
+    public ArrayList<CelestialObject> celestialObjects = new ArrayList<CelestialObject>();
 
     public void keyPressed()
     {
@@ -67,6 +68,19 @@ public class UI extends PApplet
 
     public void loadColours()
     {
+        Table table = loadTable("objects.csv", "header");
+        for(TableRow tr:table.rows())
+        {
+            String colourName = tr.getString("colour");
+            String temperature = tr.getString("temperature");
+            String weather = tr.getString("weather");
+
+            celestialObjects.add(new CelestialObject(colourName, temperature, weather));
+        }
+    }
+
+    public void loadCelestialObjects()
+    {
         Table table = loadTable("colours.csv", "header");
         for(TableRow tr:table.rows())
         {
@@ -94,13 +108,13 @@ public class UI extends PApplet
             int sectorPlanets = tr.getInt("planets");
             int sectorHabitablePlanets = tr.getInt("habitable");
             
-            sectors.add(new Sector(findColour(sectorSunColour), sectorSunBrightness, sectorSunSize, sectorName, sectorPopulation, sectorPlanets, sectorHabitablePlanets, sectorDesc));
+            sectors.add(new Sector(this, findColour(sectorSunColour), sectorSunBrightness, sectorSunSize, sectorName, sectorPopulation, sectorPlanets, sectorHabitablePlanets, sectorDesc));
         }
         
         //add empty sectors to the arraylist
         while (sectors.size() < sectorButtons.size())
         {
-            sectors.add(new Sector(findColour("white"), 0, 0, "Empty Sector", 0, 0, 0, "An empty sector, nothing to be found here but asteroids and debris."));
+            sectors.add(new Sector(this, findColour("white"), 0, 0, "Empty Sector", 0, 0, 0, "An empty sector, nothing to be found here but asteroids and debris."));
         }
 
         //randomize the arraylist for fun and variety

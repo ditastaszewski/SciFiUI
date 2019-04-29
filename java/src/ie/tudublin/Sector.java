@@ -1,9 +1,6 @@
 package ie.tudublin;
 
-import javax.lang.model.util.ElementScanner6;
-
-import sun.security.provider.Sun;
-
+import java.util.Random;
 import java.util.ArrayList;
 
 public class Sector
@@ -23,9 +20,12 @@ public class Sector
 
     public ArrayList<SectorObject> sectorObjects = new ArrayList<SectorObject>();
 
+    UI ui;
 
-    public Sector(Colour colour, int brightness, int size, String name, int population, int planets, int habitable, String description)
+
+    public Sector(UI ui, Colour colour, int brightness, int size, String name, int population, int planets, int habitable, String description)
     {
+        this.ui = ui;
         this.colour = colour;
         this.brightness = brightness;
         this.size = size;
@@ -101,7 +101,8 @@ public class Sector
     {
         for (int i = 0 ; i < planets ; i ++)
         {
-            sectorObjects.add(new Planet(this, colour, size));
+            Random rand = new Random();
+            sectorObjects.add(new Planet(this, ui.colours.get(rand.nextInt(ui.colours.size() - 6) + 6), size));
         }
     }
 
