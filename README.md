@@ -21,13 +21,27 @@ When viewing a sector press space to move through the objects in the sector to s
 
 # How it works
 
-The program displays the first sector by default, to change through sectors you can do one of 2 things:
-1. Use the arrow keys to move through the sector map. It is a basic decrement/increment when you press the LEFT/RIGHT key, when the UP key is used it removes the amount of sectors in a row from the current value (and makes sure that it is not out of bounds) and when the DOWN key is used it adds the amount of sectors in a row to the current value (also making sure it remains in bounds.)
+## Display Class
 
-2. Use the mouse to click on a SectorButton object within the sector map section. When you click within the area of the sector map section the code uses a formula to get the location of the node on the X axis and adds that to its location on the Y axis multiplied by the number of nodes in a row.
-```Java
-which = (int) ((mouseX - startX) / size) + (int) ((mouseY - startY) / size) * sectorColumns;
-```
+Each section of the screen extends from the Display class, it is a straightforward class that creates a simple outline for a section by placing the name of section at the top and a line under it. Another purpose of the display class is to calculate delays between objects. Although only used in the sector map the UI class fetches the time taken since the last action (in this case keypress) and once it reaches a certain time the delay is reset to 0. This is done to make sure an action can be done at least once at a reasonable pace.
+
+## Sector Map
+
+The program displays the first sector by default, to move through sectors you can do one of 2 things:
+1. Use the arrow keys to move through the sector map. It is a basic decrement/increment when you press the LEFT/RIGHT key, when the UP key is used it removes the amount of sectors in a row from the current value (and makes sure that it is not out of bounds) and when the DOWN key is used it adds the amount of sectors in a row to the current value (also making sure it remains in bounds.) There is a delay that is calculated everytime the user presses/holds down a button, once a key hasn't been pressed for a set amount of time the sector changes to the next one the user chose. This is to prevent a user from changing sectors too quickly.
+
+2. Use the mouse to click on a SectorButton object within the sector map section. When you click within the area of the sector map section the code uses a formula to get the location of the node on the X axis and adds that to its location on the Y axis multiplied by the number of nodes in a row. ```which = (int) ((mouseX - startX) / size) + (int) ((mouseY - startY) / size) * sectorColumns;```
+This method also checks the last active sector that was pressed, so that if you click somewhere else on the screen that doesn't select a sector the sector you last chose is still displayed without changing anything.
+
+The grid in the sector map actually has a SectorButton object in each grid spot, each SectorButton object renders the star inside the center of its grid spot using its size and colour while empty sectors have nothing rendered in them apart from the background stars that appear. These stars change position slightly based on the mouse's location to create a minor small effect.
+
+The SectorButton objects are generated within the SectorMap class and the UI class gets the data necessary to determine which SectorButton belongs to which x/y coordinate.
+
+## Sector Info
+
+The SectorInfo class is simple in that it fetches the Sector object of the currently active sector and displays the descriptive variables on the screen. Within the Sector class when the sector is intialized a series of if/else statements determines the strings that pops up for the amount of planets and the habitable planets.
+
+## 
 
 SectorObject is the base class which all classes that are supposed to be displayed in the SectorDisplay class inherit from. This extends to the Asteroid, Planet, and Sun class.
 
