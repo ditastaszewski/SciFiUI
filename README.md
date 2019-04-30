@@ -10,6 +10,9 @@ The assignment was to create a sci-fi themed UI. I went with a starmap theme whe
 
 # Instructions
 
+Arrow keys to navigate the sectors, this can also be done by clicking on the grids in the sector map.
+When viewing a sector press space to move through the objects in the sector to show more information about each object. You can click on each object to view more info as well.
+
 # How it works
 
 # What I am most proud of in the assignment
