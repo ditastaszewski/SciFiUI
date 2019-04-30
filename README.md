@@ -4,9 +4,9 @@ Name: Alexander Staszewski
 
 Student Number: C17705971
 
-Fork this repository and use it a starter project for your assignment
-
 # Description of the assignment
+
+The assignment was to create a sci-fi themed UI. I went with a starmap theme where the user has a sector/star system map with many various star systems and empty sectors (filled with asteroids) and by clicking on an individual sector on this map they can view it up close displaying the star and all the planets rotating around it.
 
 # Instructions
 

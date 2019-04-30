@@ -238,6 +238,10 @@ public class UI extends PApplet
 
         Sector sector = sectors.get(sectorOption);
        
+        if (objectWhich > sector.getSectorObjects().size() - 1)
+        {
+            objectWhich = 0;
+        }
 
         sd.render();
         sm.render();
@@ -318,7 +322,23 @@ public class UI extends PApplet
 
             sectorButtons.get(activeWhich).setActive(false);
             activeWhich = sectorOption;
+            objectWhich = -1;
 
+        }
+
+        if (keyPressed)
+        {
+            float delay = sm.getDelay(last);
+
+            if (delay > minDelay)
+            {
+                last = millis();
+                if (key == ' ')
+                {
+                    objectWhich ++;
+                }
+               
+            }
         }
     }
 }
