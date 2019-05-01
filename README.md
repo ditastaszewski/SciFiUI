@@ -10,7 +10,7 @@ The assignment was to create a sci-fi themed UI. I went with a starmap theme whe
 
 ![Rough Prototype](https://i.imgur.com/i2qnaMC.png)
 
-I created a rough prototype (seen above) to visualize what kind of elements I wanted to see in the UI and expanded on this mostly on my own but I realized that Starbound's navigation system also had something similar to what I was doing.
+I created a rough prototype (seen above) to visualize what kind of elements I wanted to see in the UI and expanded on this mostly on my own but I realized that [Starbound's navigation system](https://starbounder.org/Navigation) also had something similar to what I was doing.
 
 # Instructions
 
@@ -41,7 +41,27 @@ The SectorButton objects are generated within the SectorMap class and the UI cla
 
 The SectorInfo class is simple in that it fetches the Sector object of the currently active sector and displays the descriptive variables on the screen. Within the Sector class when the sector is intialized a series of if/else statements determines the strings that pops up for the amount of planets and the habitable planets.
 
-## 
+## Sector Display
+
+The SectorDisplay class displays all the objects found in the sector's SectorObject arraylist. These are asteroids for empty sectors and planets and stars for named sectors. It is quite simple in that all it does is render each object in the given arraylist using a for loop and making sure it renders from the center of the rectangle.
+
+## Sector Object Info Class
+
+When a user clicks on a celestial object within the sector display (or presses space) a small box pops up that displays info about the object. The data for the object isn't stored within the class for the celestial object but rather it gets it using the colour of the object and retrieving a CelestialObject class through a function in UI. The information that wasn't necessary to render the objects in the sector display was put into another csv file to keep things separate and easy to manage.
+
+## Sector Class
+
+When a sector is created it is usually done by checking the sectors.csv file for pre-existing information on sectors. This is done in the UI class using the loadSectors function which accesses the csv file and creates new sectors to add to the sectors arraylist. When the values are initialized several strings relating to the amount of planets and amount of habitable planets in the sector are created as well. The necessary planets for the sector are created as well alongside its sun. When the planets are created they are given random values depending on how many habitable planets there are in a system. Everytime a habitable planet is created a variable is decremented and once it reaches 0 only uninhabitable planets (magma/frozen/barren) are created instead. All aesthetic factors for the planet are randomized but as mentioned before the info display through the SectorObjectInfo class are obtained through objects.csv. 
+
+In the case that the sector is empty the createAsteroids function is called instead which creates between 30 and 50 asteroid objects all of varying size to populate the sector.
+
+## Colour Class
+
+
+
+## Celestial Object Class
+
+## Sector Object Class
 
 SectorObject is the base class which all classes that are supposed to be displayed in the SectorDisplay class inherit from. This extends to the Asteroid, Planet, and Sun class.
 
