@@ -43,7 +43,6 @@ public class Display {
     public float getDelay(float last) {
         float now = ui.millis();        
         delay = (now - last) / 1000.0f;
-        last = now;
 
         return delay;
     }
