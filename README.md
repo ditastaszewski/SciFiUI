@@ -25,6 +25,15 @@ When viewing a sector press space to move through the objects in the sector to s
 
 Each section of the screen extends from the Display class, it is a straightforward class that creates a simple outline for a section by placing the name of section at the top and a line under it. Another purpose of the display class is to calculate delays between objects. Although only used in the sector map the UI class fetches the time taken since the last action (in this case keypress) and once it reaches a certain time the delay is reset to 0. This is done to make sure an action can be done at least once at a reasonable pace.
 
+```Java
+public float getDelay(float last) {
+float now = ui.millis();        
+delay = (now - last) / 1000.0f;
+
+return delay;
+}
+```
+
 ## Sector Map
 
 The program displays the first sector by default, to move through sectors you can do one of 2 things:
@@ -35,7 +44,38 @@ This method also checks the last active sector that was pressed, so that if you 
 
 The grid in the sector map actually has a SectorButton object in each grid spot, each SectorButton object renders the star inside the center of its grid spot using its size and colour while empty sectors have nothing rendered in them apart from the background stars that appear. These stars change position slightly based on the mouse's location to create a minor small effect.
 
-The SectorButton objects are generated within the SectorMap class and the UI class gets the data necessary to determine which SectorButton belongs to which x/y coordinate.
+The SectorButton objects are generated within the SectorMap class and added to the sectorButtons arraylist in the UI class using nested for loops when the class is initialized and the UI class gets the data necessary to determine which SectorButton belongs to which x/y coordinate from this class as well.
+
+```Java
+public SectorMap(UI ui, float x1, float y1, float dWidth, float dHeight, String displayName) 
+{
+super(ui, x1, y1, dWidth, dHeight, displayName);
+float distWidth = x2 - displacement * 2 - 6;
+float distHeight = y2 - displacement - 6;
+int distMultiplier = 12; //how many sectors we want in one row
+float gridCubeSize = distWidth / distMultiplier;
+int gridCubeHeight = (int) (distHeight / gridCubeSize);
+int sectorCount = 0;
+
+startX = x1 + displacement + 3;
+startY = y1 + displacement * 2 + 3;
+gridSize = gridCubeSize;
+
+//Creates the sectorbuttons for the grid so that the user can click on them
+for (int i = 0; i < gridCubeHeight; i++) {
+    for (int j = 0; j < distMultiplier; j++) {
+
+
+	ui.sectorButtons.add(new SectorButton(ui, startX + gridCubeSize * j, startY + gridCubeSize * i, gridCubeSize));
+
+	sectorCount ++;
+    }
+}
+totalSectors = sectorCount;
+totalSectorsWidth = distMultiplier;
+}
+
+```
 
 ## Sector Info
 
@@ -44,6 +84,9 @@ The SectorInfo class is simple in that it fetches the Sector object of the curre
 ## Sector Display
 
 The SectorDisplay class displays all the objects found in the sector's SectorObject arraylist. These are asteroids for empty sectors and planets and stars for named sectors. It is quite simple in that all it does is render each object in the given arraylist using a for loop and making sure it renders from the center of the rectangle.
+
+![Populated Sector](https://i.imgur.com/eAP4d3v.png)
+![Empty Sector](https://i.imgur.com/hotpLCH.png)
 
 ## Sector Object Info Class
 
@@ -57,82 +100,73 @@ In the case that the sector is empty the createAsteroids function is called inst
 
 ## Colour Class
 
+colours.csv holds columns, one for the name of the colour and 3 for the RGB values, using this a Colour class was created so that if it a certain colour was needed a findColour function in the UI class would allow me to get the RGB values for a colour with just its name. In the case that a colour wasn't specified it returns the orange colour to prevent things from breaking.
 
+```Java
+public Colour findColour(String colourName)
+{
+for (int i = 0 ; i < colours.size() ; i ++)
+{
+    if (colours.get(i).getColourName().equals(colourName))
+    {
+	return colours.get(i);
+    }
+}
+return colours.get(4);
+}
+
+```
 
 ## Celestial Object Class
+
+Identical in purpose to the Colour class the CelestialObject class loads data from the objects.csv file in the UI class so that it can be accessed later again in the UI class using the findObject function. This allows the descriptive data regarding an object to be stored somewhere else and accessed only when necessary.
+
+```Java
+public CelestialObject findObject(String colourName)
+{
+for (int i = 0 ; i < celestialObjects.size() ; i ++)
+{
+    if (celestialObjects.get(i).getColourName().equals(colourName))
+    {
+	return celestialObjects.get(i);
+    }
+}
+return celestialObjects.get(4);
+}
+```
 
 ## Sector Object Class
 
 SectorObject is the base class which all classes that are supposed to be displayed in the SectorDisplay class inherit from. This extends to the Asteroid, Planet, and Sun class.
 
+This class renders the object in orbit around the center of the sector display and depending on the type of object it may not move at all. Usually objects that are at the center of the sector display won't move, however asteroids do not move regardless of where they are as they don't particularly orbit around anything within the sector. If the object is a planet the Planet class will make sure it renders a circle indicating its orbit as well.
+
+```Java
+public void render(float x, float y)
+{
+int r = colour.r;
+int g = colour.g;
+int b = colour.b;
+rX = x + (float)(Math.sin(a) * distance);
+rY = y + (float)(Math.cos(a) * distance);
+
+ui.stroke(r, g, b);
+ui.fill(r, g, b);
+ui.circle(rX, rY, size * 5);
+ui.noFill();
+ui.stroke(203, 203, 203);
+
+orbit();
+}
+```
 
 # What I am most proud of in the assignment
 
-# Markdown Tutorial
+For me this project provided me the challenge of using Java continuously on a project that was unlike other projects I have done because of the large usage of visual elements. I am proud that I was able to start off with a very rough idea and gradually add pieces to it which resulted in it becoming a more complete product. Of course I do feel like I could have added some more things if I had the time for it but overall I am satisfied that I managed to put the main concept that was in my head into code and have something aesthetically pleasing come out of it.
 
-This is *emphasis*
+One other big change I had by the time I finished this project was that I was far more comfortable with using git and no longer had any worries that I would mess anything up unlike with my previous labs and lab test.
 
-This is a bulleted list
+# Video
 
-- Item
-- Item
-
-This is a numbered list
-
-1. Item
-1. Item
-
-This is a [hyperlink](http://bryanduggan.org)
-
-# Headings
-## Headings
-#### Headings
-##### Headings
-
-This is code:
-
-```Java
-public void render()
-{
-	ui.noFill();
-	ui.stroke(255);
-	ui.rect(x, y, width, height);
-	ui.textAlign(PApplet.CENTER, PApplet.CENTER);
-	ui.text(text, x + width * 0.5f, y + height * 0.5f);
-}
-```
-
-So is this without specifying the language:
-
-```
-public void render()
-{
-	ui.noFill();
-	ui.stroke(255);
-	ui.rect(x, y, width, height);
-	ui.textAlign(PApplet.CENTER, PApplet.CENTER);
-	ui.text(text, x + width * 0.5f, y + height * 0.5f);
-}
-```
-
-This is an image using a relative URL:
-
-![An image](images/p8.png)
-
-This is an image using an absolute URL:
-
-![A different image](https://bryanduggandotorg.files.wordpress.com/2019/02/infinite-forms-00045.png?w=595&h=&zoom=2)
-
-This is a youtube video:
-
-[![YouTube](http://img.youtube.com/vi/J2kHSSFA4NU/0.jpg)](https://www.youtube.com/watch?v=J2kHSSFA4NU)
-
-This is a table:
-
-| Heading 1 | Heading 2 |
-|-----------|-----------|
-|Some stuff | Some more stuff in this column |
-|Some stuff | Some more stuff in this column |
-|Some stuff | Some more stuff in this column |
-|Some stuff | Some more stuff in this column |
+[![YouTube](http://img.youtube.com/vi/sRnSObLEJSI/0.jpg)](https://www.youtube.com/watch?v=sRnSObLEJSI)
 
